@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MyTest</string>
+    <string name="action_settings">Settings</string>
+
+    <!--Drawer-->
+    <string name="open_drawer">Drawer Open</string>
+    <string name="close_drawer">Drawer Close</string>
+
+    <!--Drawer Menus-->
+    <string name="about">About</string>
+
+</resources>
