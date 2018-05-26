@@ -9,4 +9,8 @@
     <!--Drawer Menus-->
     <string name="about">About</string>
 
+    <!--Main-->
+    <string name="tests">Tests</string>
+    <string name="results">Results</string>
+
 </resources>

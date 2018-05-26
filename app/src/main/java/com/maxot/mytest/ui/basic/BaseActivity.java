@@ -9,10 +9,14 @@ import com.maxot.mytest.di.component.ActivityComponent;
 import com.maxot.mytest.di.component.DaggerActivityComponent;
 import com.maxot.mytest.di.module.ActivityModule;
 
+import butterknife.Unbinder;
+
 public abstract class BaseActivity extends AppCompatActivity
-        implements MvpView {
+        implements MvpView, BaseFragment.Callback {
 
     private ActivityComponent mActivityComponent;
+
+    private Unbinder mUnbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,6 +32,22 @@ public abstract class BaseActivity extends AppCompatActivity
     }
 
 
+
+
+
+    public void setUnbinder(Unbinder unbinder) {
+        mUnbinder = unbinder;
+    }
+
+    @Override
+    public void onFragmentAttached() {
+
+    }
+
+    @Override
+    public void onFragmentDetached(String tag) {
+
+    }
 
     protected  abstract void  setUp();
 }
