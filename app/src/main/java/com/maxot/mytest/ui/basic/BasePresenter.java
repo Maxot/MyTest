@@ -1,6 +1,7 @@
 package com.maxot.mytest.ui.basic;
 
 import com.maxot.mytest.data.DataManager;
+import com.maxot.mytest.utils.rx.SchedulerProvider;
 
 import javax.inject.Inject;
 
@@ -17,25 +18,44 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
     private final DataManager mDataManager;
     private final CompositeDisposable mCompositeDisposable;
-
+    private final SchedulerProvider mSchedulerProvider;
 
     private V mMvpView;
 
     @Inject
     public BasePresenter(DataManager dataManager,
-                         CompositeDisposable compositeDisposable){
+                         CompositeDisposable compositeDisposable,
+                         SchedulerProvider schedulerProvider){
         this.mDataManager = dataManager;
         this.mCompositeDisposable = compositeDisposable;
+        this.mSchedulerProvider = schedulerProvider;
     }
 
     @Override
     public void onAttach(V mvpView) {
         mvpView = mMvpView;
-
     }
 
     @Override
     public void onDetach() {
-
+        mCompositeDisposable.dispose();
+        mMvpView = null;
     }
+
+    public DataManager getDataManager() {
+        return mDataManager;
+    }
+
+    public CompositeDisposable getCompositeDisposable() {
+        return mCompositeDisposable;
+    }
+
+    public SchedulerProvider getSchedulerProvider() {
+        return mSchedulerProvider;
+    }
+
+    public V getMvpView() {
+        return mMvpView;
+    }
+
 }

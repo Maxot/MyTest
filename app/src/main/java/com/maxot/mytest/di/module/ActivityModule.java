@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.maxot.mytest.R;
 import com.maxot.mytest.di.ActivityContext;
 import com.maxot.mytest.di.PerActivity;
+import com.maxot.mytest.ui.basic.MvpPresenter;
 import com.maxot.mytest.ui.basic.MvpView;
 import com.maxot.mytest.ui.main.MainMvpPresenter;
 import com.maxot.mytest.ui.main.MainMvpView;
@@ -16,6 +17,11 @@ import com.maxot.mytest.ui.main.tests.TestsAdapter;
 import com.maxot.mytest.ui.main.tests.TestsMvpPresenter;
 import com.maxot.mytest.ui.main.tests.TestsMvpView;
 import com.maxot.mytest.ui.main.tests.TestsPresenter;
+import com.maxot.mytest.ui.testing.TestingMvpPresenter;
+import com.maxot.mytest.ui.testing.TestingMvpView;
+import com.maxot.mytest.ui.testing.TestingPresenter;
+import com.maxot.mytest.utils.rx.AppSchedulerProvider;
+import com.maxot.mytest.utils.rx.SchedulerProvider;
 
 import java.util.ArrayList;
 
@@ -51,6 +57,11 @@ public class ActivityModule {
         return new CompositeDisposable();
     }
 
+    @Provides
+    SchedulerProvider provideSchedulerProvider(){
+        return new AppSchedulerProvider();
+    }
+
 
 
     @Provides
@@ -67,6 +78,13 @@ public class ActivityModule {
     @PerActivity
     MainMvpPresenter<MainMvpView> provideMainPresenter(
             MainPresenter<MainMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    TestingMvpPresenter<TestingMvpView> provideTestingPresenter(
+            TestingPresenter<TestingMvpView> presenter) {
         return presenter;
     }
 

@@ -1,4 +1,4 @@
-package com.maxot.mytest.ui.main.results;
+package com.maxot.mytest.ui.testing;
 
 import com.maxot.mytest.data.DataManager;
 import com.maxot.mytest.ui.basic.BasePresenter;
@@ -8,13 +8,20 @@ import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-public class ResultsPresenter<V extends ResultsMvpView> extends BasePresenter<V>
-        implements ResultsMvpPresenter<V>{
+public class TestingPresenter<V extends TestingMvpView> extends BasePresenter<V>
+        implements TestingMvpPresenter<V>{
+
+    public static final String TAG = "TestingPresenter";
 
     @Inject
-    public ResultsPresenter(DataManager dataManager,
+    public TestingPresenter(DataManager dataManager,
                             CompositeDisposable compositeDisposable,
                             SchedulerProvider schedulerProvider) {
         super(dataManager, compositeDisposable, schedulerProvider);
+    }
+
+    @Override
+    public void onViewInitialized() {
+
     }
 }

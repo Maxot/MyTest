@@ -8,10 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.maxot.mytest.R;
 import com.maxot.mytest.di.component.ActivityComponent;
 import com.maxot.mytest.ui.basic.BaseFragment;
+import com.maxot.mytest.ui.testing.TestingActivity;
+import com.mindorks.placeholderview.annotations.Click;
 
 import javax.inject.Inject;
 
@@ -25,6 +28,9 @@ public class TestsFragment extends BaseFragment
 
     @Inject
     TestsMvpPresenter<TestsMvpView> mPresenter;
+
+    @BindView(R.id.button)
+    public Button mButton;
 
   //  @Inject
   //  TestsAdapter mTestsAdapter;
@@ -55,8 +61,15 @@ public class TestsFragment extends BaseFragment
             component.inject(this);
             setUnBinder(ButterKnife.bind(this, view));
             mPresenter.onAttach(this);
-         //   mBlogAdapter.setCallback(this);
+         //   mTestsAdapter.setCallback(this);
         }
+
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openTestingActivity();
+            }
+        });
 
         return view;
     }
@@ -73,4 +86,12 @@ public class TestsFragment extends BaseFragment
     public void onTestsEmptyViewRetryClick() {
 
     }
+
+    @Override
+    public void openTestingActivity() {
+        startActivity(TestingActivity.getStartIntent(this.getContext()));
+    }
+
+
+
 }
