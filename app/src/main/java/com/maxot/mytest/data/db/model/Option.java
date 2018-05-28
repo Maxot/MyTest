@@ -2,15 +2,28 @@ package com.maxot.mytest.data.db.model;
 
 public class Option {
 
-    private Long id;
+    private int id;
 
     private String optionText;
 
+    private int questionId;
+
     private boolean isCorrect;
 
+    public Option(int id, String optionText, int questionId, boolean isCorrect) {
+        this.id = id;
+        this.optionText = optionText;
+        this.questionId = questionId;
+        this.isCorrect = isCorrect;
+    }
 
+    public int getQuestionId() {
+        return questionId;
+    }
 
-
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
+    }
 
     public boolean isCorrect() {
         return isCorrect;
@@ -20,11 +33,11 @@ public class Option {
         isCorrect = correct;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

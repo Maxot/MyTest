@@ -4,9 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.maxot.mytest.R;
 
@@ -28,11 +32,19 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
+    @BindView(R.id.drawer_view)
+    DrawerLayout mDrawer;
+
+    @BindView(R.id.navigation_view)
+    NavigationView mNavigationView;
+
     @BindView(R.id.main_view_pager)
     ViewPager mViewPager;
 
     @BindView(R.id.tab_layout)
     TabLayout mTabLayout;
+
+    private ActionBarDrawerToggle mDrawerToggle;
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
@@ -57,11 +69,28 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     protected void setUp() {
 
         setSupportActionBar(mToolbar);
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                mDrawer,
+                mToolbar,
+                R.string.open_drawer,
+                R.string.close_drawer) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
 
-        if (getSupportActionBar() != null){
-           // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+        };
+        mDrawer.addDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
+
+
+
+
 
         mPagerAdapter.setCount(2);
 
@@ -91,6 +120,9 @@ public class MainActivity extends BaseActivity implements MainMvpView {
             }
         });
     }
+
+
+
 
     @Override
     protected void onDestroy() {

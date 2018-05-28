@@ -4,12 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 
 import com.maxot.mytest.R;
+import com.maxot.mytest.data.db.model.Question;
 import com.maxot.mytest.ui.basic.BaseActivity;
 import com.maxot.mytest.utils.ScreenUtils;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
+import com.mindorks.placeholderview.listeners.ItemRemovedListener;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -46,6 +52,12 @@ public class TestingActivity extends BaseActivity implements TestingMvpView {
     }
 
     @Override
+    protected void onDestroy() {
+        mPresenter.onDetach();
+        super.onDestroy();
+    }
+
+    @Override
     protected void setUp() {
         setupCardContainerView();
         mPresenter.onViewInitialized();
@@ -72,5 +84,40 @@ public class TestingActivity extends BaseActivity implements TestingMvpView {
                         .setSwipeRotationAngle(10)
                         .setRelativeScale(0.01f));
 
+        mCardsContainerView.addItemRemoveListener(new ItemRemovedListener() {
+            @Override
+            public void onItemRemoved(int count) {
+                if (count == 0){
+                    //reload the content
+                }
+            }
+        });
+
+    }
+
+
+    @Override
+    public void refreshQuestionnaire(List<Question> questionList) {
+        for (Question question: questionList){
+            if (question != null
+                    && question.getOptionList() != null
+                    && question.getOptionList().size() == 3) {
+                mCardsContainerView.addView(new QuestionCard(question));
+            }
+        }
+    }
+
+    @Override
+    public void reloadQuestionnaire(List<Question> questionList) {
+        refreshQuestionnaire(questionList);
+        ScaleAnimation animation =
+                new ScaleAnimation(
+                        1.15f, 1, 1.15f, 1,
+                        Animation.RELATIVE_TO_SELF, 0.5f,
+                        Animation.RELATIVE_TO_SELF, 0.5f);
+
+        mCardsContainerView.setAnimation(animation);
+        animation.setDuration(100);
+        animation.start();
     }
 }

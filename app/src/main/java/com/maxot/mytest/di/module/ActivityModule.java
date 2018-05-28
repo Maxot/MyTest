@@ -94,14 +94,6 @@ public class ActivityModule {
         return presenter;
     }
 
-    @Provides
-    @Singleton
-    CalligraphyConfig provideCalligraphyDefaultConfig() {
-        return new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/source-sans-pro/SourceSansPro-Regular.ttf")
-                .setFontAttrId(R.attr.fontPath)
-                .build();
-    }
 
     @Provides
     LinearLayoutManager provideLinearLayoutManager(AppCompatActivity activity) {

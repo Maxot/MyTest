@@ -1,4 +1,6 @@
 package com.maxot.mytest.data;
 
-public interface DataManager {
+import com.maxot.mytest.data.db.DbHelper;
+
+public interface DataManager extends DbHelper {
 }

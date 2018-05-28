@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="5dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/Toolbar"
+            app:subtitleTextColor="@color/white"
+            app:title="@string/app_name"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            app:titleTextColor="@color/white" />
+
+    </android.support.design.widget.AppBarLayout>
 
     <com.mindorks.placeholderview.SwipePlaceHolderView
         android:id="@+id/card_container"
@@ -10,7 +25,5 @@
         android:layout_height="match_parent">
 
     </com.mindorks.placeholderview.SwipePlaceHolderView>
-
-
 
 </android.support.design.widget.CoordinatorLayout>

@@ -72,10 +72,10 @@ public class QuestionCard {
                     button = mOption1Button;
                     break;
                 case 1:
-                    button = mOption1Button;
+                    button = mOption2Button;
                     break;
                 case 2:
-                    button = mOption1Button;
+                    button = mOption3Button;
                     break;
             }
             if (button != null){
