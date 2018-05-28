@@ -2,6 +2,7 @@ package com.maxot.mytest.data.db;
 
 import com.maxot.mytest.data.db.model.Option;
 import com.maxot.mytest.data.db.model.Question;
+import com.maxot.mytest.data.db.model.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,9 @@ public class AppDbHelper implements DbHelper {
 
     @Override
     public Observable<List<Question>> getAllQuestion() {
+
+
+
         List<Question> questions = new ArrayList<Question>();
         List<Option> options = new ArrayList<Option>();
         List<Option> options2 = new ArrayList<Option>();
@@ -36,5 +40,22 @@ public class AppDbHelper implements DbHelper {
         Observable<List<Question>> myQuestions = Observable.just(questions);
 
         return myQuestions;
+    }
+
+    @Override
+    public Observable<List<Test>> getAllTest() {
+
+        List<Test> tests = new ArrayList<Test>();
+
+        Test mathTest = new Test(1,"Math test");
+        Test androidTest = new Test(2,"Android test");
+        Test cppTest = new Test(3,"C++ test");
+
+        tests.add(mathTest);
+        tests.add(androidTest);
+        tests.add(cppTest);
+
+        Observable<List<Test>> myTests = Observable.just(tests);
+        return myTests;
     }
 }

@@ -79,6 +79,7 @@ public class QuestionCard {
                     break;
             }
             if (button != null){
+
                 if (option.isCorrect()) {
                     button.setBackgroundColor(Color.GREEN);
                 } else {
@@ -91,16 +92,19 @@ public class QuestionCard {
     @Click(R.id.btn_option_1)
     private void onOptionClick1(){
         showCorrectOptions();
+        mOption1Button.setBackgroundColor(Color.YELLOW);
     }
 
     @Click(R.id.btn_option_2)
     private void onOptionClick2(){
         showCorrectOptions();
+        mOption2Button.setBackgroundColor(Color.YELLOW);
     }
 
     @Click(R.id.btn_option_3)
     private void onOptionClick3(){
         showCorrectOptions();
+        mOption3Button.setBackgroundColor(Color.YELLOW);
     }
 
 }

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.maxot.mytest.R;
+import com.maxot.mytest.data.db.model.Test;
 import com.maxot.mytest.di.ActivityContext;
 import com.maxot.mytest.di.PerActivity;
 import com.maxot.mytest.ui.basic.MvpPresenter;
@@ -71,7 +72,7 @@ public class ActivityModule {
 
     @Provides
     TestsAdapter provideTestsAdapter(){
-        return new TestsAdapter();
+        return new TestsAdapter(new ArrayList<Test>());
     }
 
     @Provides

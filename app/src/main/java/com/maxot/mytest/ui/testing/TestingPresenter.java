@@ -33,9 +33,9 @@ public class TestingPresenter<V extends TestingMvpView> extends BasePresenter<V>
             .subscribe(new Consumer<List<Question>>() {
                 @Override
                 public void accept(List<Question> questions) throws Exception {
-//                    if(!isViewAttached()) {
-//                        return;
-//                    }
+                    if(!isViewAttached()) {
+                        return;
+                    }
 
                     if (questions != null) {
                         getMvpView().refreshQuestionnaire(questions);

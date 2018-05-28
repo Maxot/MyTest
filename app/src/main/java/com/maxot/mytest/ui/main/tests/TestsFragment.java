@@ -3,6 +3,7 @@ package com.maxot.mytest.ui.main.tests;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,10 +12,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.maxot.mytest.R;
+import com.maxot.mytest.data.db.model.Test;
 import com.maxot.mytest.di.component.ActivityComponent;
 import com.maxot.mytest.ui.basic.BaseFragment;
 import com.maxot.mytest.ui.testing.TestingActivity;
 import com.mindorks.placeholderview.annotations.Click;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -29,11 +33,8 @@ public class TestsFragment extends BaseFragment
     @Inject
     TestsMvpPresenter<TestsMvpView> mPresenter;
 
-    @BindView(R.id.button)
-    public Button mButton;
-
-  //  @Inject
-  //  TestsAdapter mTestsAdapter;
+    @Inject
+    TestsAdapter mTestsAdapter;
 
     @Inject
     LinearLayoutManager mLinearLayoutManager;
@@ -61,24 +62,22 @@ public class TestsFragment extends BaseFragment
             component.inject(this);
             setUnBinder(ButterKnife.bind(this, view));
             mPresenter.onAttach(this);
-         //   mTestsAdapter.setCallback(this);
+            mTestsAdapter.setCallback(this);
         }
-
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openTestingActivity();
-            }
-        });
 
         return view;
     }
 
     @Override
     protected void setUp(View view) {
-       // mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        mPresenter.onViewPrepader();
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setAdapter(mTestsAdapter);
+
+
+        mPresenter.onViewPrepared();
 
     }
 
@@ -88,10 +87,19 @@ public class TestsFragment extends BaseFragment
     }
 
     @Override
+    public void updateTests(List<Test> testList) {
+        mTestsAdapter.addItems(testList);
+    }
+
+    @Override
     public void openTestingActivity() {
         startActivity(TestingActivity.getStartIntent(this.getContext()));
     }
 
 
-
+    @Override
+    public void onDestroyView() {
+        mPresenter.onDetach();
+        super.onDestroyView();
+    }
 }
