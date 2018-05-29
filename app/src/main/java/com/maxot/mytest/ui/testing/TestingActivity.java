@@ -10,6 +10,7 @@ import android.view.animation.ScaleAnimation;
 import com.maxot.mytest.R;
 import com.maxot.mytest.data.db.model.Question;
 import com.maxot.mytest.ui.basic.BaseActivity;
+import com.maxot.mytest.ui.result.ResultActivity;
 import com.maxot.mytest.utils.ScreenUtils;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
@@ -63,6 +64,11 @@ public class TestingActivity extends BaseActivity implements TestingMvpView {
         mPresenter.onViewInitialized();
     }
 
+    @Override
+    public void openResultActivity() {
+        startActivity(ResultActivity.getStartIntent(this.getBaseContext()));
+    }
+
 
     /**
      * Working with Card Container.
@@ -89,6 +95,7 @@ public class TestingActivity extends BaseActivity implements TestingMvpView {
             public void onItemRemoved(int count) {
                 if (count == 0){
                     //reload the content
+                    openResultActivity();
                 }
             }
         });

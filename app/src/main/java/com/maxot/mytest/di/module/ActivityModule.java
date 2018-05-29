@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.maxot.mytest.R;
+import com.maxot.mytest.data.db.model.Result;
 import com.maxot.mytest.data.db.model.Test;
 import com.maxot.mytest.di.ActivityContext;
 import com.maxot.mytest.di.PerActivity;
@@ -18,6 +19,10 @@ import com.maxot.mytest.ui.main.tests.TestsAdapter;
 import com.maxot.mytest.ui.main.tests.TestsMvpPresenter;
 import com.maxot.mytest.ui.main.tests.TestsMvpView;
 import com.maxot.mytest.ui.main.tests.TestsPresenter;
+import com.maxot.mytest.ui.result.ResultAdapter;
+import com.maxot.mytest.ui.result.ResultMvpPresenter;
+import com.maxot.mytest.ui.result.ResultMvpView;
+import com.maxot.mytest.ui.result.ResultPresenter;
 import com.maxot.mytest.ui.testing.TestingMvpPresenter;
 import com.maxot.mytest.ui.testing.TestingMvpView;
 import com.maxot.mytest.ui.testing.TestingPresenter;
@@ -76,11 +81,18 @@ public class ActivityModule {
     }
 
     @Provides
+    ResultAdapter provideResultAdapter(){
+        return new ResultAdapter(new ArrayList<Result>());
+    }
+
+    @Provides
     @PerActivity
     MainMvpPresenter<MainMvpView> provideMainPresenter(
             MainPresenter<MainMvpView> presenter) {
         return presenter;
     }
+
+
 
     @Provides
     @PerActivity
@@ -92,6 +104,13 @@ public class ActivityModule {
     @Provides
     TestsMvpPresenter<TestsMvpView> provideTestsMvpPresenter(
             TestsPresenter<TestsMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    ResultMvpPresenter<ResultMvpView> provideResultMvpPresenter(
+            ResultPresenter<ResultMvpView> presenter) {
         return presenter;
     }
 

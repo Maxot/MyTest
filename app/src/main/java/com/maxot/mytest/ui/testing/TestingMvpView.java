@@ -10,4 +10,6 @@ public interface TestingMvpView extends MvpView {
     void refreshQuestionnaire(List<Question> questionList);
 
     void reloadQuestionnaire(List<Question> questionList);
+
+    void openResultActivity();
 }

@@ -87,6 +87,7 @@ public class TestsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             testNameTextView.setText("");
         }
 
+        @Override
         public void onBind(int position){
             super.onBind(position);
 

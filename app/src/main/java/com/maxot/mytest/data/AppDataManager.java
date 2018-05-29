@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.maxot.mytest.data.db.DbHelper;
 import com.maxot.mytest.data.db.model.Question;
+import com.maxot.mytest.data.db.model.Result;
 import com.maxot.mytest.data.db.model.Test;
 import com.maxot.mytest.di.ApplicationContext;
 
@@ -37,5 +38,10 @@ public class AppDataManager implements DataManager {
     @Override
     public Observable<List<Test>> getAllTest() {
         return mDbHelper.getAllTest();
+    }
+
+    @Override
+    public Observable<List<Result>> getAllResult() {
+        return mDbHelper.getAllResult();
     }
 }

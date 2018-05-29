@@ -1,7 +1,9 @@
 package com.maxot.mytest.data.db;
 
+import com.maxot.mytest.data.db.model.Answer;
 import com.maxot.mytest.data.db.model.Option;
 import com.maxot.mytest.data.db.model.Question;
+import com.maxot.mytest.data.db.model.Result;
 import com.maxot.mytest.data.db.model.Test;
 
 import java.util.ArrayList;
@@ -50,12 +52,40 @@ public class AppDbHelper implements DbHelper {
         Test mathTest = new Test(1,"Math test");
         Test androidTest = new Test(2,"Android test");
         Test cppTest = new Test(3,"C++ test");
+        Test rubyTest = new Test(3,"Ruby test");
+
 
         tests.add(mathTest);
         tests.add(androidTest);
         tests.add(cppTest);
+        tests.add(rubyTest);
 
         Observable<List<Test>> myTests = Observable.just(tests);
         return myTests;
+    }
+
+    @Override
+    public Observable<List<Result>> getAllResult() {
+
+        List<Result> results = new ArrayList<Result>();
+        List<Answer> answers = new ArrayList<Answer>();
+
+        List<Answer> answers1 = new ArrayList<Answer>();
+        answers.add(new Answer(1,"myAnswer1"));
+        answers.add(new Answer(2,"myAnswer12"));
+        answers.add(new Answer(3,"myAnswer13"));
+
+        answers1.add(new Answer(4,"myAnswer1453"));
+        answers1.add(new Answer(5,"myAnswer153"));
+        answers1.add(new Answer(6,"myAnswer163"));
+
+
+        results.add(new Result(1, 1, answers));
+        results.add(new Result(2, 2, answers1));
+        results.add(new Result(2, 2, answers1));
+
+
+        Observable<List<Result>> myResults = Observable.just(results);
+        return myResults;
     }
 }

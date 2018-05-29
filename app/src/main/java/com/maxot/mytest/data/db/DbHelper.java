@@ -1,6 +1,7 @@
 package com.maxot.mytest.data.db;
 
 import com.maxot.mytest.data.db.model.Question;
+import com.maxot.mytest.data.db.model.Result;
 import com.maxot.mytest.data.db.model.Test;
 
 import java.util.List;
@@ -12,5 +13,7 @@ public interface DbHelper {
     Observable<List<Question>> getAllQuestion();
 
     Observable<List<Test>> getAllTest();
+
+    Observable<List<Result>> getAllResult();
 
 }

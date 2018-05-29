@@ -13,7 +13,7 @@
             android:id="@+id/toolbar"
             style="@style/Toolbar"
             app:subtitleTextColor="@color/white"
-            app:title="@string/app_name"
+            app:title="test name"
             app:titleTextAppearance="@style/Toolbar.TitleText"
             app:titleTextColor="@color/white" />
 
@@ -25,5 +25,41 @@
         android:layout_height="match_parent">
 
     </com.mindorks.placeholderview.SwipePlaceHolderView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary">
+
+
+
+            <TextView
+                android:id="@+id/questionNum"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="0dp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="0/0"
+                android:textAlignment="center" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"/>
+
+    </LinearLayout>
+
+
 
 </android.support.design.widget.CoordinatorLayout>
