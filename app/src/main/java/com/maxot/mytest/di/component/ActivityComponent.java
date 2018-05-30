@@ -23,5 +23,5 @@ public interface ActivityComponent {
 
     void inject(TestsFragment fragment);
 
-  //  void inject(ResultsFragment fragment);
+    void inject(ResultsFragment fragment);
 }

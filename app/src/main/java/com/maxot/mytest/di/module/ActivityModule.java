@@ -15,6 +15,10 @@ import com.maxot.mytest.ui.main.MainMvpPresenter;
 import com.maxot.mytest.ui.main.MainMvpView;
 import com.maxot.mytest.ui.main.MainPagerAdapter;
 import com.maxot.mytest.ui.main.MainPresenter;
+import com.maxot.mytest.ui.main.results.ResultsAdapter;
+import com.maxot.mytest.ui.main.results.ResultsMvpPresenter;
+import com.maxot.mytest.ui.main.results.ResultsMvpView;
+import com.maxot.mytest.ui.main.results.ResultsPresenter;
 import com.maxot.mytest.ui.main.tests.TestsAdapter;
 import com.maxot.mytest.ui.main.tests.TestsMvpPresenter;
 import com.maxot.mytest.ui.main.tests.TestsMvpView;
@@ -68,7 +72,9 @@ public class ActivityModule {
         return new AppSchedulerProvider();
     }
 
-
+    /**
+     * Adapters
+     */
 
     @Provides
     MainPagerAdapter provideMainPagerAdapter(AppCompatActivity activity){
@@ -86,13 +92,21 @@ public class ActivityModule {
     }
 
     @Provides
+    ResultsAdapter provideResultsAdapter(){
+        return new ResultsAdapter(new ArrayList<Result>());
+    }
+
+
+    /**
+     * Presenters
+     */
+
+    @Provides
     @PerActivity
     MainMvpPresenter<MainMvpView> provideMainPresenter(
             MainPresenter<MainMvpView> presenter) {
         return presenter;
     }
-
-
 
     @Provides
     @PerActivity
@@ -113,6 +127,15 @@ public class ActivityModule {
             ResultPresenter<ResultMvpView> presenter) {
         return presenter;
     }
+
+    @Provides
+    ResultsMvpPresenter<ResultsMvpView> provideResultsMvpPresenter(
+            ResultsPresenter<ResultsMvpView> presenter) {
+        return presenter;
+    }
+
+
+
 
 
     @Provides

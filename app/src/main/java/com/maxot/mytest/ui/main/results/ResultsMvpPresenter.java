@@ -4,4 +4,6 @@ import com.maxot.mytest.ui.basic.MvpPresenter;
 
 public interface ResultsMvpPresenter<V extends ResultsMvpView>
         extends MvpPresenter<V>{
+
+    void  onViewPrepared();
 }

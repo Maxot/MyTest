@@ -22,15 +22,28 @@
             android:orientation="vertical"
             android:paddingBottom="30dp">
 
-            <TextView
-                android:id="@+id/question_name_textview"
-                style="@style/TextStyle.Title"
-                android:layout_width="match_parent"
-                android:text="Question"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textStyle="normal" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="32dp"
+                    android:layout_height="36dp"
+                    app:srcCompat="@drawable/question_mark" />
+
+                <TextView
+                    android:id="@+id/question_name_textview"
+                    style="@style/TextStyle.Title"
+                    android:layout_width="match_parent"
+                    android:text="Question"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
 
             <View style="@style/Divider"/>
 
