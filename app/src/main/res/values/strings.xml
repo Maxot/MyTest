@@ -11,6 +11,7 @@
     <!--Drawer Menus-->
     <string name="about">About</string>
     <string name="logout">Logout</string>
+    <string name="profile">Profile</string>
 
     <!--Main-->
     <string name="tests">Tests</string>

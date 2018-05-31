@@ -33,15 +33,10 @@
                     android:layout_height="30dp"
                     app:srcCompat="@drawable/ic_question_mark" />
 
-                <TextView
-                    android:id="@+id/question_name_textview"
-                    style="@style/TextStyle.Title"
+                <EditText
                     android:layout_width="match_parent"
-                    android:text="Question"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:textStyle="normal" />
+                    android:layout_margin="5dp"/>
 
             </LinearLayout>
 
@@ -101,8 +96,7 @@
 
             </LinearLayout>
 
-            </LinearLayout>
-
+        </LinearLayout>
 
     </android.support.v7.widget.CardView>
 </RelativeLayout>

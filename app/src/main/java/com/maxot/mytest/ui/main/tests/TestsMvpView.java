@@ -9,5 +9,7 @@ public interface TestsMvpView extends MvpView {
 
     void openTestingActivity();
 
+    void openNewTestActivity();
+
     void updateTests(List<Test> testList);
 }

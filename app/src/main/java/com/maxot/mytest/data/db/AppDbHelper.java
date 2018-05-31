@@ -83,6 +83,7 @@ public class AppDbHelper implements DbHelper {
         results.add(new Result(1, 1, answers));
         results.add(new Result(2, 2, answers1));
         results.add(new Result(3, 3, answers1));
+        results.add(new Result(4, 4, answers1));
 
 
         Observable<List<Result>> myResults = Observable.just(results);

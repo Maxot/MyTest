@@ -23,6 +23,9 @@ import com.maxot.mytest.ui.main.tests.TestsAdapter;
 import com.maxot.mytest.ui.main.tests.TestsMvpPresenter;
 import com.maxot.mytest.ui.main.tests.TestsMvpView;
 import com.maxot.mytest.ui.main.tests.TestsPresenter;
+import com.maxot.mytest.ui.newTest.NewTestMvpPresenter;
+import com.maxot.mytest.ui.newTest.NewTestMvpView;
+import com.maxot.mytest.ui.newTest.NewTestPresenter;
 import com.maxot.mytest.ui.result.ResultAdapter;
 import com.maxot.mytest.ui.result.ResultMvpPresenter;
 import com.maxot.mytest.ui.result.ResultMvpView;
@@ -131,6 +134,12 @@ public class ActivityModule {
     @Provides
     ResultsMvpPresenter<ResultsMvpView> provideResultsMvpPresenter(
             ResultsPresenter<ResultsMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    NewTestMvpPresenter<NewTestMvpView> provideNewTestMvpPresenter(
+            NewTestPresenter<NewTestMvpView> presenter) {
         return presenter;
     }
 

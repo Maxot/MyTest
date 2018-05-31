@@ -12,7 +12,9 @@ import com.maxot.mytest.R;
 import com.maxot.mytest.data.db.model.Answer;
 import com.maxot.mytest.data.db.model.Result;
 import com.maxot.mytest.ui.basic.BaseActivity;
+import com.maxot.mytest.ui.main.MainActivity;
 import com.maxot.mytest.ui.main.results.ResultsAdapter;
+import com.maxot.mytest.ui.testing.TestingActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +57,12 @@ public class ResultActivity extends BaseActivity
         mResultAdapter.setCallback(this);
 
         setUp();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(MainActivity.getStartIntent(this));
     }
 
     @Override

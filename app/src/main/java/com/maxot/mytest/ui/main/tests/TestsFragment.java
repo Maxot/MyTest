@@ -3,6 +3,7 @@ package com.maxot.mytest.ui.main.tests;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,8 +16,10 @@ import com.maxot.mytest.R;
 import com.maxot.mytest.data.db.model.Test;
 import com.maxot.mytest.di.component.ActivityComponent;
 import com.maxot.mytest.ui.basic.BaseFragment;
+import com.maxot.mytest.ui.newTest.NewTestActivity;
 import com.maxot.mytest.ui.testing.TestingActivity;
 import com.mindorks.placeholderview.annotations.Click;
+import com.mindorks.placeholderview.annotations.Layout;
 
 import java.util.List;
 
@@ -41,6 +44,9 @@ public class TestsFragment extends BaseFragment
 
     @BindView(R.id.tests_recycler_view)
     RecyclerView mRecyclerView;
+
+    @BindView(R.id.floatingActionButtonForNewTest)
+    FloatingActionButton mFloatingActionButton;
 
 
 
@@ -76,7 +82,12 @@ public class TestsFragment extends BaseFragment
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mTestsAdapter);
 
-
+        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNewTestActivity();
+            }
+        });
         mPresenter.onViewPrepared();
 
     }
@@ -96,10 +107,17 @@ public class TestsFragment extends BaseFragment
         startActivity(TestingActivity.getStartIntent(this.getContext()));
     }
 
+    @Override
+    public void openNewTestActivity() {
+        startActivity(NewTestActivity.getStartIntent(this.getContext()));
+    }
 
     @Override
     public void onDestroyView() {
         mPresenter.onDetach();
         super.onDestroyView();
     }
+
+
+
 }
