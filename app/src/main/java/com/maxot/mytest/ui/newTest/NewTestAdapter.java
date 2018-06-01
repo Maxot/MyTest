@@ -14,10 +14,10 @@ import java.util.List;
 
 public class NewTestAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
-    List<Question> mQuestionList;
+    List<Integer> mList;
 
-    public NewTestAdapter(List<Question> questionList) {
-        mQuestionList = questionList;
+    public NewTestAdapter(List<Integer> questionList) {
+        mList = questionList;
     }
 
     @NonNull
@@ -34,8 +34,24 @@ public class NewTestAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemCount() {
+        if (mList != null && mList.size() > 0)
+            return  mList.size();
         return 0;
     }
+
+    public void addItems(List<Integer> list){
+        mList.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    public void addItem(Integer list){
+        mList.add(list);
+        notifyDataSetChanged();
+    }
+
+
+
+
 
 
 
@@ -54,6 +70,8 @@ public class NewTestAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @Override
         public void onBind(int position) {
             super.onBind(position);
+
+//            final Integer item = mList.get(position);
         }
     }
 }

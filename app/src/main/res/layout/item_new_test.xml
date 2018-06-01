@@ -22,7 +22,7 @@
             android:orientation="vertical"
             android:paddingBottom="30dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -34,37 +34,31 @@
                     app:srcCompat="@drawable/ic_question_mark" />
 
                 <EditText
+                    android:layout_marginLeft="50dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"/>
+                    android:layout_height="wrap_content"/>
 
-            </LinearLayout>
+            </RelativeLayout>
 
 
             <View style="@style/Divider"/>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/your_answer_imageview"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_margin="5dp"
                     app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
 
-                <TextView
-                    android:id="@+id/your_answer_textview"
-                    style="@style/TextStyle.Title"
+                <EditText
+                    android:layout_marginLeft="50dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="your answer"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:textStyle="normal" />
+                    android:layout_height="wrap_content"/>
 
-            </LinearLayout>
+            </RelativeLayout>
 
 
 
@@ -73,28 +67,42 @@
 
             <View style="@style/Divider"/>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/correct_answer_imageview"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_margin="5dp"
-                    app:srcCompat="@drawable/ic_check_black_24dp" />
+                    app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
 
-                <TextView
-                    android:id="@+id/correct_answer_textview"
-                    style="@style/TextStyle.Title"
-                    android:text="correct answer"
+                <EditText
+                    android:layout_marginLeft="50dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:textStyle="normal" />
+                    android:layout_height="wrap_content"/>
 
-            </LinearLayout>
+            </RelativeLayout>
+
+
+            <View style="@style/Divider"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
+
+                <EditText
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
 
         </LinearLayout>
 

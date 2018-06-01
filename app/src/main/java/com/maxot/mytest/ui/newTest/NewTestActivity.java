@@ -4,11 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
 
 import com.maxot.mytest.R;
 import com.maxot.mytest.ui.basic.BaseActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -20,10 +28,20 @@ public class NewTestActivity extends BaseActivity implements NewTestMvpView {
     @Inject
     NewTestMvpPresenter<NewTestMvpView> mPresenter;
 
+    @Inject
+    NewTestAdapter mNewTestAdapter;
+
+    @Inject
+    LinearLayoutManager mLinearLayoutManager;
+
     @BindView(R.id.toolbarNewTest)
     Toolbar mToolbar;
 
+    @BindView(R.id.floatingActionButtonForNewQuestion)
+    FloatingActionButton mFloatingActionButton;
 
+    @BindView(R.id.new_test_recycler_view)
+    RecyclerView mRecyclerView;
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, NewTestActivity.class);
@@ -50,6 +68,25 @@ public class NewTestActivity extends BaseActivity implements NewTestMvpView {
     protected void setUp() {
         setSupportActionBar(mToolbar);
 
+        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setAdapter(mNewTestAdapter);
+
+        mNewTestAdapter.addItem(1);
+
+        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mNewTestAdapter.addItem(1);
+            }
+        });
+
+    }
+
+    @Override
+    public void updateCreatingList(List<Integer> mList) {
+        mNewTestAdapter.addItems(mList);
     }
 
     @Override

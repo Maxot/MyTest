@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.maxot.mytest.R;
+import com.maxot.mytest.data.db.model.Question;
 import com.maxot.mytest.data.db.model.Result;
 import com.maxot.mytest.data.db.model.Test;
 import com.maxot.mytest.di.ActivityContext;
@@ -23,6 +24,7 @@ import com.maxot.mytest.ui.main.tests.TestsAdapter;
 import com.maxot.mytest.ui.main.tests.TestsMvpPresenter;
 import com.maxot.mytest.ui.main.tests.TestsMvpView;
 import com.maxot.mytest.ui.main.tests.TestsPresenter;
+import com.maxot.mytest.ui.newTest.NewTestAdapter;
 import com.maxot.mytest.ui.newTest.NewTestMvpPresenter;
 import com.maxot.mytest.ui.newTest.NewTestMvpView;
 import com.maxot.mytest.ui.newTest.NewTestPresenter;
@@ -98,6 +100,12 @@ public class ActivityModule {
     ResultsAdapter provideResultsAdapter(){
         return new ResultsAdapter(new ArrayList<Result>());
     }
+
+    @Provides
+    NewTestAdapter provideNewTestAdapter(){
+        return new NewTestAdapter(new ArrayList<Integer>());
+    }
+
 
 
     /**
