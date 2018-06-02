@@ -18,9 +18,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="30dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -28,20 +27,21 @@
 
                 <ImageView
                     android:id="@+id/question_imageview"
-                    android:layout_margin="5dp"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_margin="5dp"
                     app:srcCompat="@drawable/ic_question_mark" />
 
                 <EditText
-                    android:layout_marginLeft="50dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:hint="@string/ether_quest" />
 
             </RelativeLayout>
 
 
-            <View style="@style/Divider"/>
+            <View style="@style/Divider" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -54,18 +54,15 @@
                     app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
 
                 <EditText
-                    android:layout_marginLeft="50dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:hint="@string/ether_answer" />
 
             </RelativeLayout>
 
 
-
-
-
-
-            <View style="@style/Divider"/>
+            <View style="@style/Divider" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -78,14 +75,15 @@
                     app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
 
                 <EditText
-                    android:layout_marginLeft="50dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:hint="@string/ether_answer" />
 
             </RelativeLayout>
 
 
-            <View style="@style/Divider"/>
+            <View style="@style/Divider" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -98,9 +96,10 @@
                     app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
 
                 <EditText
-                    android:layout_marginLeft="50dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:hint="@string/ether_answer" />
 
             </RelativeLayout>
 

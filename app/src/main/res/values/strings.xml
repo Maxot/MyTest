@@ -16,5 +16,9 @@
     <!--Main-->
     <string name="tests">Tests</string>
     <string name="results">Results</string>
+    
+    <!--Hint-->
+    <string name="ether_quest">Enter the question name</string>
+    <string name="ether_answer">Enter the answer</string>
 
 </resources>
