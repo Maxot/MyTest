@@ -4,23 +4,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.maxot.mytest.R;
 
 import com.maxot.mytest.ui.basic.BaseActivity;
+import com.maxot.mytest.ui.profile.ProfileActivity;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements MainMvpView {
 
@@ -45,6 +51,10 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @BindView(R.id.tab_layout)
     TabLayout mTabLayout;
 
+    private TextView mNameTextView;
+
+    private TextView mEmailTextView;
+
     private ActionBarDrawerToggle mDrawerToggle;
 
     public static Intent getStartIntent(Context context) {
@@ -59,6 +69,8 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         getActivityComponent().inject(this);
 
         setUnbinder(ButterKnife.bind(this));
+
+        setupNavMenu();
 
         mPresenter.onAttach(this);
 
@@ -119,6 +131,35 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     }
 
 
+    void setupNavMenu() {
+        View headerLayout = mNavigationView.getHeaderView(0);
+      //  mProfileImageView = (RoundedImageView) headerLayout.findViewById(R.id.iv_profile_pic);
+        mNameTextView = (TextView) headerLayout.findViewById(R.id.tv_name);
+        mEmailTextView = (TextView) headerLayout.findViewById(R.id.tv_email);
+
+        mNavigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        mDrawer.closeDrawer(GravityCompat.START);
+                        switch (item.getItemId()) {
+                            case R.id.nav_item_profile:
+                                mPresenter.onDrawerOptionProfileClick();
+                                return true;
+                            case R.id.nav_item_about:
+                                mPresenter.onDrawerOptionAboutClick();
+                                return true;
+                            case R.id.nav_item_logout:
+                                mPresenter.onDrawerOptionLogoutClick();
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                });
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -127,8 +168,15 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     }
 
     @Override
+    public void openProfileActivity() {
+        startActivity(ProfileActivity.getStartIntent(this));
+        finish();
+    }
+
+    @Override
     protected void onDestroy() {
         mPresenter.onDetach();
         super.onDestroy();
     }
+
 }

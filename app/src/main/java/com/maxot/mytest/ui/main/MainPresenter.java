@@ -30,4 +30,19 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     public void onNavMenuCreated() {
 
     }
+
+    @Override
+    public void onDrawerOptionProfileClick() {
+        getMvpView().openProfileActivity();
+    }
+
+    @Override
+    public void onDrawerOptionAboutClick() {
+
+    }
+
+    @Override
+    public void onDrawerOptionLogoutClick() {
+
+    }
 }

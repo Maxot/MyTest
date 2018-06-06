@@ -12,6 +12,9 @@ import com.maxot.mytest.di.ActivityContext;
 import com.maxot.mytest.di.PerActivity;
 import com.maxot.mytest.ui.basic.MvpPresenter;
 import com.maxot.mytest.ui.basic.MvpView;
+import com.maxot.mytest.ui.login.LoginMvpPresenter;
+import com.maxot.mytest.ui.login.LoginMvpView;
+import com.maxot.mytest.ui.login.LoginPresenter;
 import com.maxot.mytest.ui.main.MainMvpPresenter;
 import com.maxot.mytest.ui.main.MainMvpView;
 import com.maxot.mytest.ui.main.MainPagerAdapter;
@@ -28,6 +31,9 @@ import com.maxot.mytest.ui.newTest.NewTestAdapter;
 import com.maxot.mytest.ui.newTest.NewTestMvpPresenter;
 import com.maxot.mytest.ui.newTest.NewTestMvpView;
 import com.maxot.mytest.ui.newTest.NewTestPresenter;
+import com.maxot.mytest.ui.profile.ProfileMvpPresenter;
+import com.maxot.mytest.ui.profile.ProfileMvpView;
+import com.maxot.mytest.ui.profile.ProfilePresenter;
 import com.maxot.mytest.ui.result.ResultAdapter;
 import com.maxot.mytest.ui.result.ResultMvpPresenter;
 import com.maxot.mytest.ui.result.ResultMvpView;
@@ -140,6 +146,13 @@ public class ActivityModule {
     }
 
     @Provides
+    @PerActivity
+    ProfileMvpPresenter<ProfileMvpView> provideProfileMvpPresenter(
+            ProfilePresenter<ProfileMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
     ResultsMvpPresenter<ResultsMvpView> provideResultsMvpPresenter(
             ResultsPresenter<ResultsMvpView> presenter) {
         return presenter;
@@ -148,6 +161,12 @@ public class ActivityModule {
     @Provides
     NewTestMvpPresenter<NewTestMvpView> provideNewTestMvpPresenter(
             NewTestPresenter<NewTestMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    LoginMvpPresenter<LoginMvpView> provideLoginMvpPresenter(
+            LoginPresenter<LoginMvpView> presenter) {
         return presenter;
     }
 

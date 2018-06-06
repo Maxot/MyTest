@@ -10,4 +10,9 @@ public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V>
 
     void onNavMenuCreated();
 
+    void onDrawerOptionProfileClick();
+
+    void onDrawerOptionAboutClick();
+
+    void onDrawerOptionLogoutClick();
 }

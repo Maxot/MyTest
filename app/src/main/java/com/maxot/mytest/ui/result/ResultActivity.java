@@ -9,14 +9,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.maxot.mytest.R;
-import com.maxot.mytest.data.db.model.Answer;
 import com.maxot.mytest.data.db.model.Result;
 import com.maxot.mytest.ui.basic.BaseActivity;
 import com.maxot.mytest.ui.main.MainActivity;
-import com.maxot.mytest.ui.main.results.ResultsAdapter;
-import com.maxot.mytest.ui.testing.TestingActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
