@@ -9,6 +9,7 @@ import com.maxot.mytest.ui.main.tests.TestsFragment;
 import com.maxot.mytest.ui.newTest.NewTestActivity;
 import com.maxot.mytest.ui.profile.ProfileActivity;
 import com.maxot.mytest.ui.result.ResultActivity;
+import com.maxot.mytest.ui.search.SearchActivity;
 import com.maxot.mytest.ui.testing.TestingActivity;
 
 import dagger.Component;
@@ -28,6 +29,8 @@ public interface ActivityComponent {
     void inject(LoginActivity activity);
 
     void inject(ProfileActivity activity);
+
+    void inject(SearchActivity activity);
 
 
     void inject(TestsFragment fragment);

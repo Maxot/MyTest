@@ -27,5 +27,6 @@
     <string name="about_user">About</string>
     <string name="edit_about">Edit about</string>
     <string name="add_review">Add review</string>
+    <string name="search">Search</string>
 
 </resources>

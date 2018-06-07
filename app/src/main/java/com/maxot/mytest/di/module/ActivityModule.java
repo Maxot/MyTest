@@ -38,6 +38,9 @@ import com.maxot.mytest.ui.result.ResultAdapter;
 import com.maxot.mytest.ui.result.ResultMvpPresenter;
 import com.maxot.mytest.ui.result.ResultMvpView;
 import com.maxot.mytest.ui.result.ResultPresenter;
+import com.maxot.mytest.ui.search.SearchMvpPresenter;
+import com.maxot.mytest.ui.search.SearchMvpView;
+import com.maxot.mytest.ui.search.SearchPresenter;
 import com.maxot.mytest.ui.testing.TestingMvpPresenter;
 import com.maxot.mytest.ui.testing.TestingMvpView;
 import com.maxot.mytest.ui.testing.TestingPresenter;
@@ -144,6 +147,14 @@ public class ActivityModule {
             ResultPresenter<ResultMvpView> presenter) {
         return presenter;
     }
+
+    @Provides
+    @PerActivity
+    SearchMvpPresenter<SearchMvpView> provideSearchMvpPresenter(
+            SearchPresenter<SearchMvpView> presenter) {
+        return presenter;
+    }
+
 
     @Provides
     @PerActivity

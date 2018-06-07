@@ -16,8 +16,8 @@ public class MvpApp extends Application {
     @Inject
     DataManager mDataManager;
 
- //   @Inject
- //  CalligraphyConfig mCalligraphyConfig;
+    @Inject
+   CalligraphyConfig mCalligraphyConfig;
 
     private ApplicationComponent mApplicationComponent;
 
@@ -30,7 +30,7 @@ public class MvpApp extends Application {
 
         mApplicationComponent.inject(this);
 
-      //  CalligraphyConfig.initDefault(mCalligraphyConfig);
+        CalligraphyConfig.initDefault(mCalligraphyConfig);
 
     }
 

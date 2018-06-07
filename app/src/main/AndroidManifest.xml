@@ -34,6 +34,7 @@
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.profile.ProfileActivity"
                 android:label=""/>
+        <activity android:name=".ui.search.SearchActivity" />
 
     </application>
 
