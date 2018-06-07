@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.maxot.mytest.ui.profile.ProfileActivity">
+    <item
+        android:id="@+id/edit_about"
+        android:checked="true"
+        android:title="@string/edit_about" />
+
+    <item
+        android:id="@+id/add_review"
+        android:checked="true"
+        android:title="@string/add_review" />
+
+</menu>
