@@ -21,9 +21,11 @@
     <string name="ether_quest">Enter the question name</string>
     <string name="ether_answer">Enter the answer</string>
     <string name="password">Password</string>
-    <string name="email">e-mail</string>
+    <string name="email">E-mail</string>
     <string name="login">Log in</string>
     <string name="login_activity">Hello</string>
     <string name="about_user">About</string>
+    <string name="edit_about">Edit about</string>
+    <string name="add_review">Add review</string>
 
 </resources>

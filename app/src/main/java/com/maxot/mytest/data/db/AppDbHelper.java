@@ -1,9 +1,12 @@
 package com.maxot.mytest.data.db;
 
+import com.maxot.mytest.R;
+import com.maxot.mytest.data.db.model.AboutUser;
 import com.maxot.mytest.data.db.model.Answer;
 import com.maxot.mytest.data.db.model.Option;
 import com.maxot.mytest.data.db.model.Question;
 import com.maxot.mytest.data.db.model.Result;
+import com.maxot.mytest.data.db.model.Review;
 import com.maxot.mytest.data.db.model.Test;
 
 import java.util.ArrayList;
@@ -88,5 +91,26 @@ public class AppDbHelper implements DbHelper {
 
         Observable<List<Result>> myResults = Observable.just(results);
         return myResults;
+    }
+
+    @Override
+    public Observable<AboutUser> getAboutUser() {
+
+        AboutUser aboutUser = new AboutUser("Android developer, la;alalalalalalalalalalala");
+
+        Observable<AboutUser> myAbout = Observable.just(aboutUser);
+        return myAbout;
+    }
+
+    @Override
+    public Observable<List<Review>> getReviews() {
+        Review review1 = new Review("Good work!");
+        Review review2 = new Review("Well done!");
+        List<Review> list = new ArrayList<>();
+        list.add(review1);
+        list.add(review2);
+
+        Observable<List<Review>> listObservable = Observable.just(list);
+        return  listObservable;
     }
 }
