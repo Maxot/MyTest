@@ -10,9 +10,11 @@
     <color name="bg_color">#f7f7f7</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
+    <color name="white_hint">#70ffffff</color>
     <color name="black_effective">#2a2a2a</color>
     <color name="shadow">#d0d8dc</color>
     <color name="transparent">#00000000</color>
+    <color name="transparent50">#c9516179</color>
     <color name="translucent_white">#88ffffff</color>
     <color name="fb">#3b5998</color>
     <color name="google">#d34836</color>

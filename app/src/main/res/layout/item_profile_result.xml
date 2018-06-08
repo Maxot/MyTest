@@ -11,62 +11,102 @@
     android:gravity="left"
     android:background="@color/blue_grey_light">
     <android.support.v7.widget.CardView
-        android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_height="69dp"
+        android:layout_margin="10dp"
+        android:padding="15dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:background="@color/white"
-        android:orientation="vertical"
+        android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="7dp"
         app:cardElevation="4dp">
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="68dp">
 
             <TextView
                 android:id="@+id/test_name_in_result_profile"
                 style="@style/TextStyle.Title"
+                android:layout_width="168dp"
+                android:layout_height="42dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="8dp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_weight="8"
-                android:textStyle="normal" />
+                android:layout_height="22dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:text="yyyy-MM-dd hh:mm:ss"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/test_name_in_results_view"
+                app:layout_constraintTop_toBottomOf="@+id/true_imageview" />
+
             <ImageView
                 android:id="@+id/true_imageview"
-                android:layout_margin="5dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/false_imageview"
+                app:layout_constraintStart_toEndOf="@+id/test_name_in_results_view"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_true_green_24dp" />
+
             <TextView
                 android:id="@+id/count_true"
-                android:text="5"
                 style="@style/TextStyle.Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:textStyle="normal" />
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginBottom="36dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="5"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/true_imageview"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
             <ImageView
                 android:id="@+id/false_imageview"
-                android:layout_margin="5dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/count_false"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_false_red_24dp" />
+
             <TextView
                 android:id="@+id/count_false"
-                android:text="2"
                 style="@style/TextStyle.Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:textStyle="normal" />
+                android:layout_width="24dp"
+                android:layout_height="24dp"
 
-        </LinearLayout>
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:text="2"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

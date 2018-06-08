@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_grey_light"
+    android:background="@drawable/my_background_image"
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout

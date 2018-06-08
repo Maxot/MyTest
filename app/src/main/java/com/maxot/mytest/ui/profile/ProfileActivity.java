@@ -89,7 +89,7 @@ public class ProfileActivity extends BaseActivity
 
     @Override
     public void updateResults(List<Result> resultList) {
-        mExpandableView.addView(new HeadingView(getBaseContext(), "Result"));
+        mExpandableView.addView(new HeadingView(getBaseContext(), "Results"));
         for (int i= 0; i <resultList.size(); i++){
             mExpandableView.addView(new ResultsView(getBaseContext(), resultList.get(i)));
         }

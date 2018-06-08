@@ -41,6 +41,9 @@ import com.maxot.mytest.ui.result.ResultPresenter;
 import com.maxot.mytest.ui.search.SearchMvpPresenter;
 import com.maxot.mytest.ui.search.SearchMvpView;
 import com.maxot.mytest.ui.search.SearchPresenter;
+import com.maxot.mytest.ui.splash.SplashMvpPresenter;
+import com.maxot.mytest.ui.splash.SplashMvpView;
+import com.maxot.mytest.ui.splash.SplashPresenter;
 import com.maxot.mytest.ui.testing.TestingMvpPresenter;
 import com.maxot.mytest.ui.testing.TestingMvpView;
 import com.maxot.mytest.ui.testing.TestingPresenter;
@@ -160,6 +163,13 @@ public class ActivityModule {
     @PerActivity
     ProfileMvpPresenter<ProfileMvpView> provideProfileMvpPresenter(
             ProfilePresenter<ProfileMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    SplashMvpPresenter<SplashMvpView> provideSplashMvpPresenter(
+            SplashPresenter<SplashMvpView> presenter) {
         return presenter;
     }
 
