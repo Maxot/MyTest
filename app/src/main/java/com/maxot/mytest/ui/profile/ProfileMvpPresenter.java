@@ -1,5 +1,7 @@
 package com.maxot.mytest.ui.profile;
 
+import android.net.Uri;
+
 import com.maxot.mytest.di.PerActivity;
 import com.maxot.mytest.ui.basic.MvpPresenter;
 
@@ -12,5 +14,11 @@ public interface ProfileMvpPresenter<V extends ProfileMvpView>
     void getAboutUser();
 
     void getReviews();
+
+    String getEmail();
+
+    String getName();
+
+    Uri getProfileImage();
 
 }

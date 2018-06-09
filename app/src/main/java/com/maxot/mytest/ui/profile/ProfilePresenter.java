@@ -1,5 +1,7 @@
 package com.maxot.mytest.ui.profile;
 
+import android.net.Uri;
+
 import com.maxot.mytest.data.DataManager;
 import com.maxot.mytest.data.db.model.AboutUser;
 import com.maxot.mytest.data.db.model.Result;
@@ -70,5 +72,20 @@ public class ProfilePresenter<V extends  ProfileMvpView> extends BasePresenter<V
                     }
                 }));
 
+    }
+
+    @Override
+    public String getEmail(){
+        return super.getDataManager().getEmail();
+    }
+
+    @Override
+    public String getName() {
+        return super.getDataManager().getName();
+    }
+
+    @Override
+    public Uri getProfileImage() {
+        return super.getDataManager().getProfileImg();
     }
 }

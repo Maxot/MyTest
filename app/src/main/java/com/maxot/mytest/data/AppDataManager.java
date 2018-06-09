@@ -1,6 +1,7 @@
 package com.maxot.mytest.data;
 
 import android.content.Context;
+import android.net.Uri;
 
 import com.maxot.mytest.data.db.DbHelper;
 import com.maxot.mytest.data.db.model.AboutUser;
@@ -8,6 +9,7 @@ import com.maxot.mytest.data.db.model.Question;
 import com.maxot.mytest.data.db.model.Result;
 import com.maxot.mytest.data.db.model.Review;
 import com.maxot.mytest.data.db.model.Test;
+import com.maxot.mytest.data.firebase.FirebaseHelper;
 import com.maxot.mytest.di.ApplicationContext;
 
 import java.util.List;
@@ -24,12 +26,15 @@ public class AppDataManager implements DataManager {
 
     private final Context mContext;
     private final DbHelper mDbHelper;
+    private final FirebaseHelper mFirebaseHelper;
 
     @Inject
     public AppDataManager(@ApplicationContext Context context,
-                          DbHelper dbHelper) {
+                          DbHelper dbHelper,
+                          FirebaseHelper firebaseHelper) {
         mContext = context;
         mDbHelper = dbHelper;
+        mFirebaseHelper = firebaseHelper;
     }
 
     @Override
@@ -55,5 +60,20 @@ public class AppDataManager implements DataManager {
     @Override
     public Observable<List<Review>> getReviews() {
         return mDbHelper.getReviews();
+    }
+
+    @Override
+    public String getEmail() {
+        return mFirebaseHelper.getEmail();
+    }
+
+    @Override
+    public String getName() {
+        return mFirebaseHelper.getName();
+    }
+
+    @Override
+    public Uri getProfileImg() {
+        return mFirebaseHelper.getProfileImg();
     }
 }

@@ -3,8 +3,11 @@ package com.maxot.mytest.ui.splash;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.maxot.mytest.R;
 import com.maxot.mytest.ui.basic.BaseActivity;
 import com.maxot.mytest.ui.login.LoginActivity;
@@ -19,8 +22,13 @@ import io.reactivex.annotations.Nullable;
 
 public class SplashActivity extends BaseActivity implements  SplashMvpView {
 
+    private static final String TAG = "Splash activity";
     @Inject
     SplashMvpPresenter<SplashMvpView> mPresenter;
+
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+    private String mUsername;
 
 
 
@@ -39,7 +47,22 @@ public class SplashActivity extends BaseActivity implements  SplashMvpView {
         setUnbinder(ButterKnife.bind(this));
 
         mPresenter.onAttach(SplashActivity.this);
-        openLoginActivity();
+
+        // Initialize Firebase Auth
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+//        Log.e(TAG, mFirebaseUser.getEmail());
+
+        if (mFirebaseUser == null) {
+            // Not signed in, launch the Sign In activity
+            openLoginActivity();
+        } else {
+            openMainActivity();
+//            mUsername = mFirebaseUser.getDisplayName();
+//            if (mFirebaseUser.getPhotoUrl() != null) {
+//               // mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
+//            }
+        }
     }
 
     /**

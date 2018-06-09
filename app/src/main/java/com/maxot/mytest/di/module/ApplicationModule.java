@@ -8,6 +8,8 @@ import com.maxot.mytest.data.AppDataManager;
 import com.maxot.mytest.data.DataManager;
 import com.maxot.mytest.data.db.AppDbHelper;
 import com.maxot.mytest.data.db.DbHelper;
+import com.maxot.mytest.data.firebase.AppFirebaseHelper;
+import com.maxot.mytest.data.firebase.FirebaseHelper;
 import com.maxot.mytest.di.ActivityContext;
 import com.maxot.mytest.di.ApplicationContext;
 
@@ -47,6 +49,12 @@ public class ApplicationModule {
     @Singleton
     DbHelper provideDbHelper(AppDbHelper appDbHelper) {
         return appDbHelper;
+    }
+
+    @Provides
+    @Singleton
+    FirebaseHelper provideFirebaseHelper(AppFirebaseHelper appFirebaseHelper) {
+        return appFirebaseHelper;
     }
 
     @Provides

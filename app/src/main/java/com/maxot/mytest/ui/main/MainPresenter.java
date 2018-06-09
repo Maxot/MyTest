@@ -1,5 +1,7 @@
 package com.maxot.mytest.ui.main;
 
+import android.net.Uri;
+
 import com.maxot.mytest.data.DataManager;
 import com.maxot.mytest.ui.basic.BasePresenter;
 import com.maxot.mytest.ui.basic.MvpPresenter;
@@ -44,5 +46,20 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     @Override
     public void onDrawerOptionLogoutClick() {
 
+    }
+
+    @Override
+    public String getEmail(){
+        return super.getDataManager().getEmail();
+    }
+
+    @Override
+    public String getName() {
+        return super.getDataManager().getName();
+    }
+
+    @Override
+    public Uri getProfilImage() {
+        return super.getDataManager().getProfileImg();
     }
 }

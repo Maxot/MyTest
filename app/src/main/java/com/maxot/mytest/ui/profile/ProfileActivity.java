@@ -8,12 +8,15 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.maxot.mytest.R;
 import com.maxot.mytest.data.db.model.AboutUser;
 import com.maxot.mytest.data.db.model.Result;
 import com.maxot.mytest.data.db.model.Review;
 import com.maxot.mytest.ui.basic.BaseActivity;
+import com.maxot.mytest.ui.custom.RoundedImageView;
 import com.maxot.mytest.ui.main.MainActivity;
 import com.maxot.mytest.ui.result.ResultActivity;
 import com.mindorks.placeholderview.ExpandablePlaceHolderView;
@@ -38,6 +41,12 @@ public class ProfileActivity extends BaseActivity
 
     @BindView(R.id.expandableView)
     ExpandablePlaceHolderView mExpandableView;
+
+    @BindView(R.id.iv_profile_pic)
+    RoundedImageView ivProfile;
+
+    @BindView(R.id.tv_prifile_name)
+    TextView tvProfileName;
 
 
     public static Intent getStartIntent(Context context){
@@ -84,6 +93,13 @@ public class ProfileActivity extends BaseActivity
         mPresenter.getAboutUser();
         mPresenter.getResults();
         mPresenter.getReviews();
+
+
+
+        tvProfileName.setText(mPresenter.getName());
+        Glide.with(ProfileActivity.this)
+                .load(mPresenter.getProfileImage())
+                .into(ivProfile);
 
     }
 

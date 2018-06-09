@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -19,9 +18,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.maxot.mytest.R;
-
 import com.maxot.mytest.ui.basic.BaseActivity;
+import com.maxot.mytest.ui.custom.RoundedImageView;
+import com.maxot.mytest.ui.login.LoginActivity;
 import com.maxot.mytest.ui.profile.ProfileActivity;
 import com.maxot.mytest.ui.search.SearchActivity;
 
@@ -29,9 +30,10 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements MainMvpView {
+
+    private static final String TAG = "MainActivity";
 
     @Inject
     MainMvpPresenter<MainMvpView> mPresenter;
@@ -54,9 +56,14 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @BindView(R.id.tab_layout)
     TabLayout mTabLayout;
 
+    TextView mTextViewEmail;
+    TextView mTextViewName;
+
     private TextView mNameTextView;
 
     private TextView mEmailTextView;
+
+    private RoundedImageView mProfileImageView;
 
     private ActionBarDrawerToggle mDrawerToggle;
 
@@ -136,9 +143,17 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     void setupNavMenu() {
         View headerLayout = mNavigationView.getHeaderView(0);
-      //  mProfileImageView = (RoundedImageView) headerLayout.findViewById(R.id.iv_profile_pic);
-        mNameTextView = (TextView) headerLayout.findViewById(R.id.tv_name);
-        mEmailTextView = (TextView) headerLayout.findViewById(R.id.tv_email);
+        mProfileImageView = (RoundedImageView) headerLayout.findViewById(R.id.iv_profile_pic);
+        mTextViewName = (TextView) headerLayout.findViewById(R.id.tv_name);
+        mTextViewEmail = (TextView) headerLayout.findViewById(R.id.tv_email);
+
+        mTextViewEmail.setText(mPresenter.getEmail());
+        mTextViewName.setText(mPresenter.getName());
+
+        Glide.with(MainActivity.this)
+                .load(mPresenter.getProfilImage())
+                .into(mProfileImageView);
+
 
         mNavigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -153,7 +168,16 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                                 mPresenter.onDrawerOptionAboutClick();
                                 return true;
                             case R.id.nav_item_logout:
-                                mPresenter.onDrawerOptionLogoutClick();
+                            {
+//                                mFirebaseAuth.signOut();
+//                                Auth.GoogleSignInApi.signOut(mGoogleApiClient);
+//                                mFirebaseUser = null;
+//        mUsername = ANONYMOUS;
+//        mPhotoUrl = null;
+                                MainActivity.super.signOut();
+                                openLoginActivity();
+                                 finish();
+                            }
                                 return true;
                             default:
                                 return false;
@@ -196,6 +220,12 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @Override
     public void openSearchActivity() {
         startActivity(SearchActivity.getStartIntent(this));
+        finish();
+    }
+
+    @Override
+    public void openLoginActivity() {
+        startActivity(LoginActivity.getStartIntent(this));
         finish();
     }
 

@@ -8,4 +8,6 @@ public interface MainMvpView extends MvpView {
 
     void openSearchActivity();
 
+    void openLoginActivity();
+
 }
