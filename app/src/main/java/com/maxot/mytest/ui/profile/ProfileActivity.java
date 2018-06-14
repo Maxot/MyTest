@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.maxot.mytest.R;
 import com.maxot.mytest.data.db.model.AboutUser;
 import com.maxot.mytest.data.db.model.Result;
 import com.maxot.mytest.data.db.model.Review;
+import com.maxot.mytest.data.db.model.User;
 import com.maxot.mytest.ui.basic.BaseActivity;
 import com.maxot.mytest.ui.custom.RoundedImageView;
 import com.maxot.mytest.ui.main.MainActivity;
@@ -74,6 +76,12 @@ public class ProfileActivity extends BaseActivity
     }
 
     @Override
+    protected void onDestroy() {
+        mPresenter.onDetach();
+        super.onDestroy();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.menu_profile, menu);
@@ -91,12 +99,14 @@ public class ProfileActivity extends BaseActivity
         }
 
         mPresenter.getAboutUser();
+        mPresenter.getContact();
         mPresenter.getResults();
         mPresenter.getReviews();
 
 
 
-        tvProfileName.setText(mPresenter.getName());
+
+        tvProfileName.setText(mPresenter.getUser().getName());
         Glide.with(ProfileActivity.this)
                 .load(mPresenter.getProfileImage())
                 .into(ivProfile);
@@ -129,6 +139,13 @@ public class ProfileActivity extends BaseActivity
     }
 
     @Override
+    public void updateContacts(User user) {
+        mExpandableView.addView(new HeadingView(getBaseContext(),"Contacts"));
+            mExpandableView.addView(new ContactsView(getBaseContext(), user));
+
+    }
+
+    @Override
     public void openMainActivity() {
         startActivity(MainActivity.getStartIntent(this));
         finish();
@@ -138,5 +155,18 @@ public class ProfileActivity extends BaseActivity
     public void openResultActivity() {
         startActivity(ResultActivity.getStartIntent(this));
         finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        int itemId;
+        itemId= item.getItemId();
+        switch (itemId) {
+            case android.R.id.home:
+                openMainActivity();
+                break;
+        }
+        return true;
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
@@ -45,6 +46,27 @@ public abstract class BaseFragment extends Fragment implements MvpView {
             return mActivity.getActivityComponent();
         }
         return null;
+    }
+
+    @Override
+    public void showMessage(String message) {
+        if (mActivity != null) {
+            mActivity.showMessage(message);
+        }
+    }
+
+    @Override
+    public void showMessage(@StringRes int resId) {
+        if (mActivity != null) {
+            mActivity.showMessage(resId);
+        }
+    }
+
+    @Override
+    public void openActivityOnTokenExpire() {
+        if (mActivity != null) {
+            mActivity.openActivityOnTokenExpire();
+        }
     }
 
     public BaseActivity getBaseActivity() {

@@ -1,5 +1,6 @@
 package com.maxot.mytest.ui.search;
 
+import com.google.firebase.firestore.Query;
 import com.maxot.mytest.data.DataManager;
 import com.maxot.mytest.ui.basic.BasePresenter;
 import com.maxot.mytest.utils.rx.SchedulerProvider;
@@ -16,5 +17,9 @@ public class SearchPresenter<V extends SearchMvpView>  extends BasePresenter<V>
                            CompositeDisposable compositeDisposable,
                            SchedulerProvider schedulerProvider) {
         super(dataManager, compositeDisposable, schedulerProvider);
+    }
+
+    public Query searchUser(){
+        return getDataManager().searchUser();
     }
 }

@@ -32,7 +32,66 @@
             android:id="@+id/result_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="48dp"
             tools:listitem="@layout/item_result_view" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/colorPrimary"
+        android:layout_gravity="bottom">
+        <ImageView
+            android:id="@+id/true_imageview"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/false_imageview"
+            app:layout_constraintStart_toEndOf="@+id/test_name_in_results_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_true_green_24dp" />
+
+        <TextView
+            android:id="@+id/count_true"
+            style="@style/TextStyle.Title"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginBottom="36dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="5"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/true_imageview"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/false_imageview"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/count_false"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_false_red_24dp" />
+
+        <TextView
+            android:id="@+id/count_false"
+            style="@style/TextStyle.Title"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:text="2"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </LinearLayout>
 

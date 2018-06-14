@@ -28,5 +28,6 @@
     <string name="edit_about">Edit about</string>
     <string name="add_review">Add review</string>
     <string name="search">Search</string>
+    <string name="some_error">Some Error Occured!</string>
 
 </resources>

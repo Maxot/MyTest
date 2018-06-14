@@ -3,12 +3,14 @@ package com.maxot.mytest.data;
 import android.content.Context;
 import android.net.Uri;
 
+import com.google.firebase.firestore.Query;
 import com.maxot.mytest.data.db.DbHelper;
 import com.maxot.mytest.data.db.model.AboutUser;
 import com.maxot.mytest.data.db.model.Question;
 import com.maxot.mytest.data.db.model.Result;
 import com.maxot.mytest.data.db.model.Review;
 import com.maxot.mytest.data.db.model.Test;
+import com.maxot.mytest.data.db.model.User;
 import com.maxot.mytest.data.firebase.FirebaseHelper;
 import com.maxot.mytest.di.ApplicationContext;
 
@@ -35,6 +37,21 @@ public class AppDataManager implements DataManager {
         mContext = context;
         mDbHelper = dbHelper;
         mFirebaseHelper = firebaseHelper;
+    }
+
+    @Override
+    public void addNewUserToDb() {
+        mDbHelper.addNewUserToDb();
+    }
+
+    @Override
+    public boolean checkIfUserExist() {
+        return mDbHelper.checkIfUserExist();
+    }
+
+    @Override
+    public Query searchUser() {
+        return mDbHelper.searchUser();
     }
 
     @Override
@@ -75,5 +92,10 @@ public class AppDataManager implements DataManager {
     @Override
     public Uri getProfileImg() {
         return mFirebaseHelper.getProfileImg();
+    }
+
+    @Override
+    public User getUser() {
+        return mFirebaseHelper.getUser();
     }
 }

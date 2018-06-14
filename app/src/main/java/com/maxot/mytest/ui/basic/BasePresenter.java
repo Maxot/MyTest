@@ -42,6 +42,11 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
         mMvpView = null;
     }
 
+    @Override
+    public void addNewUserToDb() {
+        mDataManager.addNewUserToDb();
+    }
+
     public boolean isViewAttached(){
         return mMvpView != null;
     }

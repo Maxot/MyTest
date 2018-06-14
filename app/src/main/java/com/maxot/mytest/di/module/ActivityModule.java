@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.google.firebase.firestore.Query;
 import com.maxot.mytest.R;
 import com.maxot.mytest.data.db.model.Question;
 import com.maxot.mytest.data.db.model.Result;
@@ -41,6 +42,7 @@ import com.maxot.mytest.ui.result.ResultPresenter;
 import com.maxot.mytest.ui.search.SearchMvpPresenter;
 import com.maxot.mytest.ui.search.SearchMvpView;
 import com.maxot.mytest.ui.search.SearchPresenter;
+import com.maxot.mytest.ui.search.user.UserAdapter;
 import com.maxot.mytest.ui.splash.SplashMvpPresenter;
 import com.maxot.mytest.ui.splash.SplashMvpView;
 import com.maxot.mytest.ui.splash.SplashPresenter;
@@ -116,6 +118,11 @@ public class ActivityModule {
     @Provides
     NewTestAdapter provideNewTestAdapter(){
         return new NewTestAdapter(new ArrayList<Integer>());
+    }
+
+    @Provides
+    UserAdapter provideUserAdapter(){
+        return new UserAdapter();
     }
 
 

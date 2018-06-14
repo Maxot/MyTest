@@ -80,9 +80,9 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
         setUnbinder(ButterKnife.bind(this));
 
-        setupNavMenu();
-
         mPresenter.onAttach(this);
+
+        setupNavMenu();
 
         setUp();
 
@@ -138,6 +138,8 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
             }
         });
+
+        mPresenter.addNewUserToDb();
     }
 
 

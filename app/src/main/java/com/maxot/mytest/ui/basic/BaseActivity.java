@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -70,10 +71,12 @@ public abstract class BaseActivity extends AppCompatActivity
 
         // Initialize FirebaseAuth
         mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
     }
 
     public void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
@@ -91,8 +94,6 @@ public abstract class BaseActivity extends AppCompatActivity
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        //      myAuthFirebase.checkSignIn(requestCode,resultCode,data);
         //      Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -171,6 +172,26 @@ public abstract class BaseActivity extends AppCompatActivity
     }
 
     @Override
+    public void showMessage(String message) {
+        if (message != null) {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, getString(R.string.some_error), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void showMessage(@StringRes int resId) {
+        showMessage(getString(resId));
+    }
+
+    @Override
+    public void openActivityOnTokenExpire() {
+        startActivity(LoginActivity.getStartIntent(this));
+        finish();
+    }
+
+    @Override
     public void onFragmentAttached() {
 
     }
@@ -178,6 +199,14 @@ public abstract class BaseActivity extends AppCompatActivity
     @Override
     public void onFragmentDetached(String tag) {
 
+    }
+    @Override
+    protected void onDestroy() {
+
+        if (mUnbinder != null) {
+            mUnbinder.unbind();
+        }
+        super.onDestroy();
     }
 
     protected  abstract void  setUp();

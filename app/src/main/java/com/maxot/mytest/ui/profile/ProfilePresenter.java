@@ -6,6 +6,7 @@ import com.maxot.mytest.data.DataManager;
 import com.maxot.mytest.data.db.model.AboutUser;
 import com.maxot.mytest.data.db.model.Result;
 import com.maxot.mytest.data.db.model.Review;
+import com.maxot.mytest.data.db.model.User;
 import com.maxot.mytest.ui.basic.BasePresenter;
 import com.maxot.mytest.utils.rx.SchedulerProvider;
 
@@ -58,6 +59,8 @@ public class ProfilePresenter<V extends  ProfileMvpView> extends BasePresenter<V
                 }));
     }
 
+
+
     @Override
     public void getResults() {
         getCompositeDisposable().add(getDataManager()
@@ -75,6 +78,11 @@ public class ProfilePresenter<V extends  ProfileMvpView> extends BasePresenter<V
     }
 
     @Override
+    public void getContact() {
+        getMvpView().updateContacts(super.getDataManager().getUser());
+    }
+
+    @Override
     public String getEmail(){
         return super.getDataManager().getEmail();
     }
@@ -88,4 +96,10 @@ public class ProfilePresenter<V extends  ProfileMvpView> extends BasePresenter<V
     public Uri getProfileImage() {
         return super.getDataManager().getProfileImg();
     }
+
+    @Override
+    public User getUser() {
+        return super.getDataManager().getUser();
+    }
+
 }
