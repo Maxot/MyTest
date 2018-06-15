@@ -5,6 +5,8 @@ import com.maxot.mytest.di.module.ActivityModule;
 import com.maxot.mytest.ui.login.LoginActivity;
 import com.maxot.mytest.ui.main.MainActivity;
 import com.maxot.mytest.ui.main.results.ResultsFragment;
+import com.maxot.mytest.ui.main.tasks.TasksFragment;
+import com.maxot.mytest.ui.main.tasks.newTask.NewTaskDialog;
 import com.maxot.mytest.ui.main.tests.TestsFragment;
 import com.maxot.mytest.ui.newTest.NewTestActivity;
 import com.maxot.mytest.ui.profile.ProfileActivity;
@@ -38,5 +40,11 @@ public interface ActivityComponent {
 
     void inject(TestsFragment fragment);
 
+    void inject(TasksFragment fragment);
+
     void inject(ResultsFragment fragment);
+
+
+
+    void inject(NewTaskDialog dialog);
 }

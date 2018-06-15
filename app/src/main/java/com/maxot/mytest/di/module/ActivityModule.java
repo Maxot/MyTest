@@ -24,6 +24,13 @@ import com.maxot.mytest.ui.main.results.ResultsAdapter;
 import com.maxot.mytest.ui.main.results.ResultsMvpPresenter;
 import com.maxot.mytest.ui.main.results.ResultsMvpView;
 import com.maxot.mytest.ui.main.results.ResultsPresenter;
+import com.maxot.mytest.ui.main.tasks.TasksAdapter;
+import com.maxot.mytest.ui.main.tasks.TasksMvpPresenter;
+import com.maxot.mytest.ui.main.tasks.TasksMvpView;
+import com.maxot.mytest.ui.main.tasks.TasksPresenter;
+import com.maxot.mytest.ui.main.tasks.newTask.NewTaskDialogMvpPresenter;
+import com.maxot.mytest.ui.main.tasks.newTask.NewTaskDialogMvpView;
+import com.maxot.mytest.ui.main.tasks.newTask.NewTaskDialogPresenter;
 import com.maxot.mytest.ui.main.tests.TestsAdapter;
 import com.maxot.mytest.ui.main.tests.TestsMvpPresenter;
 import com.maxot.mytest.ui.main.tests.TestsMvpView;
@@ -125,7 +132,10 @@ public class ActivityModule {
         return new UserAdapter();
     }
 
-
+    @Provides
+    TasksAdapter provideTasksAdapter(){
+        return new TasksAdapter();
+    }
 
     /**
      * Presenters
@@ -197,6 +207,23 @@ public class ActivityModule {
             LoginPresenter<LoginMvpView> presenter) {
         return presenter;
     }
+
+    @Provides
+    TasksMvpPresenter<TasksMvpView> provideTasksMvpPresenter(
+            TasksPresenter<TasksMvpView> presenter) {
+        return presenter;
+    }
+
+    /**
+     * Dialogs
+     */
+    @Provides
+    NewTaskDialogMvpPresenter<NewTaskDialogMvpView> provideRateUsPresenter(
+            NewTaskDialogPresenter<NewTaskDialogMvpView> presenter) {
+        return presenter;
+    }
+
+
 
 
 

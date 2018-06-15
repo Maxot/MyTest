@@ -2,6 +2,7 @@ package com.maxot.mytest.ui.profile;
 
 import android.net.Uri;
 
+import com.google.firebase.firestore.DocumentReference;
 import com.maxot.mytest.data.db.model.User;
 import com.maxot.mytest.di.PerActivity;
 import com.maxot.mytest.ui.basic.MvpPresenter;
@@ -16,15 +17,19 @@ public interface ProfileMvpPresenter<V extends ProfileMvpView>
 
     void getReviews();
 
-    void getContact();
+//    void getContact();
 
-    User getUser();
+ //   String getEmail();
 
-    String getEmail();
+//    String getName();
 
-    String getName();
+ //   Uri getProfileImage();
 
-    Uri getProfileImage();
+    User getUser(String email);
+
+    DocumentReference getUserRef(String email);
+
+    User getCurrentUser();
 
 
 }

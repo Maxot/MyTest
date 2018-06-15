@@ -29,5 +29,13 @@
     <string name="add_review">Add review</string>
     <string name="search">Search</string>
     <string name="some_error">Some Error Occured!</string>
+    <string name="tasks">Tasks</string>
+    <string name="task_name">Task name</string>
+    <string name="enter_task_name">Enter the task name</string>
+    <string name="enter_task_subject">Enter the task subject</string>
+    <string name="enter_task_text">Enter the task text</string>
+    <string name="save">Save</string>
+    <string name="close">Close</string>
+    <string name="new_task">New Task</string>
 
 </resources>

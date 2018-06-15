@@ -30,41 +30,41 @@ public class AppFirebaseHelper implements FirebaseHelper{
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
     }
 
+//    @Override
+//    public String getEmail() {
+//        mFirebaseAuth = FirebaseAuth.getInstance();
+//        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+//
+//        if (mFirebaseUser.getEmail() != null){
+//            return mFirebaseUser.getEmail();
+//        } else{
+//            return "Email";
+//        }
+//    }
+
+
+//    @Override
+//    public String getName() {
+//        mFirebaseAuth = FirebaseAuth.getInstance();
+//        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+//
+//        return mFirebaseUser.getDisplayName();
+//    }
+//
+//    @Override
+//    public Uri getProfileImg() {
+//        mFirebaseAuth = FirebaseAuth.getInstance();
+//        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+//
+//        mFirebaseAuth = FirebaseAuth.getInstance();
+//        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+//        Uri imageUri = mFirebaseUser.getPhotoUrl();
+//
+//        return imageUri;
+//    }
+
     @Override
-    public String getEmail() {
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-
-        if (mFirebaseUser.getEmail() != null){
-            return mFirebaseUser.getEmail();
-        } else{
-            return "Email";
-        }
-    }
-
-
-    @Override
-    public String getName() {
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-
-        return mFirebaseUser.getDisplayName();
-    }
-
-    @Override
-    public Uri getProfileImg() {
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        Uri imageUri = mFirebaseUser.getPhotoUrl();
-
-        return imageUri;
-    }
-
-    @Override
-    public User getUser() {
+    public User getCurrentUser() {
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         User mUser = new User(mFirebaseUser.getEmail(),

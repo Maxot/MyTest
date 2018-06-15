@@ -6,12 +6,19 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.maxot.mytest.R;
 import com.maxot.mytest.data.db.model.AboutUser;
 import com.maxot.mytest.data.db.model.Result;
@@ -32,8 +39,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.maxot.mytest.utils.AppConstant.DB_COLLECTION_USER_NAME;
+
 public class ProfileActivity extends BaseActivity
-        implements ProfileMvpView{
+        implements ProfileMvpView, EventListener<DocumentSnapshot> {
+
+    public static final String TAG = "ProfileActivity";
+
+    public static final String USER_ID = "user_id";
 
     @Inject
     ProfileMvpPresenter<ProfileMvpView> mPresenter;
@@ -51,6 +64,11 @@ public class ProfileActivity extends BaseActivity
     TextView tvProfileName;
 
 
+
+    private ListenerRegistration mUserRegistration;
+    private FirebaseFirestore mFirestore;
+    private DocumentReference mUserRef;
+
     public static Intent getStartIntent(Context context){
         Intent intent = new Intent(context, ProfileActivity.class);
         return intent;
@@ -67,6 +85,23 @@ public class ProfileActivity extends BaseActivity
         mPresenter.onAttach(this);
 
         setUp();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+ //       mUserRegistration = mPresenter.getUserRef(userEmail).addSnapshotListener(this);
+        mUserRegistration = mUserRef.addSnapshotListener(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (mUserRegistration != null) {
+            mUserRegistration.remove();
+            mUserRegistration = null;
+        }
     }
 
     @Override
@@ -99,17 +134,19 @@ public class ProfileActivity extends BaseActivity
         }
 
         mPresenter.getAboutUser();
-        mPresenter.getContact();
+  //      mPresenter.getContact();
         mPresenter.getResults();
         mPresenter.getReviews();
 
+        // Get user ID from extras
+        String userId = getIntent().getExtras().getString(USER_ID);
+        if (userId == null) {
+            throw new IllegalArgumentException("Must pass extra " + USER_ID);
+        }
 
+        mFirestore = FirebaseFirestore.getInstance();
 
-
-        tvProfileName.setText(mPresenter.getUser().getName());
-        Glide.with(ProfileActivity.this)
-                .load(mPresenter.getProfileImage())
-                .into(ivProfile);
+        mUserRef = mFirestore.collection(DB_COLLECTION_USER_NAME).document(userId);
 
     }
 
@@ -168,5 +205,28 @@ public class ProfileActivity extends BaseActivity
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
+        if (e != null) {
+            Log.w(TAG, "restaurant:onEvent", e);
+            return;
+        }
+
+     if(documentSnapshot.toObject(User.class) == null){
+        onUserLoaded(mPresenter.getCurrentUser());
+     } else
+        onUserLoaded(documentSnapshot.toObject(User.class));
+    }
+
+    private void onUserLoaded(User user) {
+
+        tvProfileName.setText(user.getName());
+        Glide.with(ProfileActivity.this)
+                .load(user.getPicture())
+                .into(ivProfile);
+
+        updateContacts(user);
     }
 }

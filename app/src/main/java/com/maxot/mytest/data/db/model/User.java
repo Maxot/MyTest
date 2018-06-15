@@ -2,6 +2,14 @@ package com.maxot.mytest.data.db.model;
 
 import android.net.Uri;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import static com.maxot.mytest.utils.AppConstant.DB_COLLECTION_USER_NAME;
+
 public class User {
 
     private String email;
@@ -18,6 +26,22 @@ public class User {
         this.name = name;
         this.picture = picture;
     }
+
+//    public String getID(){
+//        FirebaseFirestore db;
+//        db = FirebaseFirestore.getInstance();
+//        CollectionReference userRef = db.collection(DB_COLLECTION_USER_NAME);
+//        // Create a query against the collection.
+//        final Query query = userRef.whereEqualTo("email", email);
+//        query.get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        id = queryDocumentSnapshots.getDocuments().get(0).getId();
+//                    }
+//                });
+//        return id;
+//    }
 
     public String getPicture() {
         return picture;
@@ -58,5 +82,6 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
 
 }

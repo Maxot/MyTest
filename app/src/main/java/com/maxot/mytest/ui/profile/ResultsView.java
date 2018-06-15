@@ -31,15 +31,6 @@ public class ResultsView {
     @View(R.id.test_name_in_result_profile)
     TextView titleTxt;
 
-//    @View(R.id.captionTxt)
-//    TextView captionTxt;
-//
-//    @View(R.id.timeTxt)
-//    TextView timeTxt;
-//
-//    @View(R.id.imageView)
-//    ImageView imageView;
-
     Result mResult;
     Context mContext;
 

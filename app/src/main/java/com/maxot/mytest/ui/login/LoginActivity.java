@@ -82,7 +82,6 @@ public class LoginActivity extends BaseActivity implements LoginMvpView{
     @OnClick(R.id.ib_google_login)
     void onGoogleLoginClick(View v) {
         super.signIn();
-
     }
 
     @OnClick(R.id.ib_fb_login)
@@ -151,7 +150,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView{
 //        mFirebaseAuth.signInWithCredential(credential)
 //                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 //                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                    public void onComplete(@NonNull CustomTask<AuthResult> task) {
 //                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
 //
 //                        // If sign in fails, display a message to the user. If sign in succeeds

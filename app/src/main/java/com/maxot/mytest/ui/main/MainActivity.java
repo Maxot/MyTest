@@ -59,9 +59,9 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     TextView mTextViewEmail;
     TextView mTextViewName;
 
-    private TextView mNameTextView;
-
-    private TextView mEmailTextView;
+//    private TextView mNameTextView;
+//
+//    private TextView mEmailTextView;
 
     private RoundedImageView mProfileImageView;
 
@@ -116,7 +116,8 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         mViewPager.setAdapter(mPagerAdapter);
 
         mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.tests)));
-        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.results)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.tasks)));
+      //  mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.results)));
 
         mViewPager.setOffscreenPageLimit(mTabLayout.getTabCount());
 
@@ -138,7 +139,6 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
             }
         });
-
         mPresenter.addNewUserToDb();
     }
 
@@ -149,11 +149,11 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         mTextViewName = (TextView) headerLayout.findViewById(R.id.tv_name);
         mTextViewEmail = (TextView) headerLayout.findViewById(R.id.tv_email);
 
-        mTextViewEmail.setText(mPresenter.getEmail());
-        mTextViewName.setText(mPresenter.getName());
+        mTextViewEmail.setText(mPresenter.getCurrentUser().getEmail());
+        mTextViewName.setText(mPresenter.getCurrentUser().getName());
 
         Glide.with(MainActivity.this)
-                .load(mPresenter.getProfilImage())
+                .load(mPresenter.getCurrentUser().getPicture())
                 .into(mProfileImageView);
 
 
@@ -215,7 +215,12 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     public void openProfileActivity() {
-        startActivity(ProfileActivity.getStartIntent(this));
+     //   startActivity(ProfileActivity.getStartIntent(this));
+ //       finish();
+        Intent intent = new Intent(this, ProfileActivity.class);
+        intent.putExtra(ProfileActivity.USER_ID, mPresenter.getCurrentUseID());
+
+        startActivity(intent);
         finish();
     }
 

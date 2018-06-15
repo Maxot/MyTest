@@ -2,6 +2,7 @@ package com.maxot.mytest.ui.search;
 
 import com.google.firebase.firestore.Query;
 import com.maxot.mytest.data.DataManager;
+import com.maxot.mytest.data.db.model.User;
 import com.maxot.mytest.ui.basic.BasePresenter;
 import com.maxot.mytest.utils.rx.SchedulerProvider;
 
@@ -22,4 +23,6 @@ public class SearchPresenter<V extends SearchMvpView>  extends BasePresenter<V>
     public Query searchUser(){
         return getDataManager().searchUser();
     }
+
+
 }

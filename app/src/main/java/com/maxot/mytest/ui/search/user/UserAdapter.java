@@ -21,13 +21,13 @@ import butterknife.ButterKnife;
 
 public class UserAdapter extends FirestoreAdapter<UserAdapter.ViewHolder> {
 
+    private OnUserSelectedListener mListener;
+
     public interface OnUserSelectedListener {
 
         void onUserSelected(DocumentSnapshot restaurant);
 
     }
-
-    private OnUserSelectedListener mListener;
 
     public UserAdapter() {
     }

@@ -1,9 +1,13 @@
 package com.maxot.mytest.data.db;
 
+import android.support.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -11,6 +15,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.maxot.mytest.R;
 import com.maxot.mytest.data.db.model.AboutUser;
 import com.maxot.mytest.data.db.model.Answer;
+import com.maxot.mytest.data.db.model.CustomTask;
 import com.maxot.mytest.data.db.model.Option;
 import com.maxot.mytest.data.db.model.Question;
 import com.maxot.mytest.data.db.model.Result;
@@ -26,6 +31,7 @@ import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 
+import static com.maxot.mytest.utils.AppConstant.DB_COLLECTION_TASK_NAME;
 import static com.maxot.mytest.utils.AppConstant.DB_COLLECTION_USER_NAME;
 
 @Singleton
@@ -36,6 +42,8 @@ public class AppDbHelper implements DbHelper {
     private FirebaseUser mFirebaseUser;
     private DocumentSnapshot documentSnapshot;
     private Query mQuery;
+    private User mUser;
+    private DocumentReference mUserRef;
 
     @Inject
     public AppDbHelper() {
@@ -47,33 +55,39 @@ public class AppDbHelper implements DbHelper {
     @Override
     public void addNewUserToDb() {
 
-        if (checkIfUserExist() == true){
+            mFirebaseAuth = FirebaseAuth.getInstance();
 
-        } else {
-            User user = new User(mFirebaseUser.getEmail(), mFirebaseUser.getDisplayName(), mFirebaseUser.getPhotoUrl().toString());
-            db.collection(DB_COLLECTION_USER_NAME).document().set(user);
-        }
+            mFirebaseAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+
+                @Override
+                public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
+                    if (firebaseAuth.getCurrentUser() != null) {
+                        mFirebaseUser = firebaseAuth.getCurrentUser();
+
+                        // Create a reference to the user collection
+                        CollectionReference userRef = db.collection(DB_COLLECTION_USER_NAME);
+                        // Create a query against the collection.
+                        final Query query = userRef.whereEqualTo("email", firebaseAuth.getCurrentUser().getEmail());
+                        query.get()
+                                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                        if(queryDocumentSnapshots.size() == 0){
+                                            User user = new User(mFirebaseUser.getEmail(), mFirebaseUser.getDisplayName(), mFirebaseUser.getPhotoUrl().toString());
+                                            db.collection(DB_COLLECTION_USER_NAME).document().set(user);
+                                        }
+                                    }
+                                });
+                    }
+                }
+
+            });
     }
 
     @Override
-    public boolean checkIfUserExist() {
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        // Create a reference to the cities collection
-        CollectionReference citiesRef = db.collection(DB_COLLECTION_USER_NAME);
-        // Create a query against the collection.
-        Query query = citiesRef.whereEqualTo("email", mFirebaseUser.getEmail());
-        query.get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        if (queryDocumentSnapshots.isEmpty() != true)
-                        documentSnapshot = queryDocumentSnapshots.getDocuments().get(0);
-                    }
-                });
-        if (documentSnapshot != null)
-        return true; else
-            return false;
+    public void addNewTaskToDb(CustomTask task) {
+        db.collection(DB_COLLECTION_TASK_NAME).document().set(task);
     }
 
     @Override
@@ -84,6 +98,53 @@ public class AppDbHelper implements DbHelper {
         // Get users
         mQuery = db.collection(DB_COLLECTION_USER_NAME);
         return mQuery;
+    }
+
+    @Override
+    public Query getTasks() {
+        // Enable Firestore logging
+        FirebaseFirestore.setLoggingEnabled(true);
+
+        // Get users
+        mQuery = db.collection(DB_COLLECTION_TASK_NAME);
+        return mQuery;
+    }
+
+    @Override
+    public User getUser(String email) {
+        CollectionReference userRef = db.collection(DB_COLLECTION_USER_NAME);
+        // Create a query against the collection.
+        final Query query = userRef.whereEqualTo("email", email);
+        query.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        mUser = queryDocumentSnapshots.getDocuments().get(0).toObject(User.class);
+                    }
+                });
+        return mUser;
+    }
+
+    @Override
+    public String getCurrentUserId() {
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        return mFirebaseUser.getProviderId();
+    }
+
+    @Override
+    public DocumentReference getUserRef(String email) {
+        CollectionReference userRef = db.collection(DB_COLLECTION_USER_NAME);
+        // Create a query against the collection.
+        final Query query = userRef.whereEqualTo("email", email);
+        query.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        mUserRef = queryDocumentSnapshots.getDocuments().get(0).getReference();
+                    }
+                });
+        return mUserRef;
     }
 
     @Override

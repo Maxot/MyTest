@@ -20,8 +20,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.maxot.mytest.R;
+import com.maxot.mytest.data.db.model.User;
 import com.maxot.mytest.ui.basic.BaseActivity;
 import com.maxot.mytest.ui.main.MainActivity;
+import com.maxot.mytest.ui.profile.ProfileActivity;
 import com.maxot.mytest.ui.result.ResultActivity;
 import com.maxot.mytest.ui.search.user.UserAdapter;
 
@@ -33,7 +35,8 @@ import butterknife.ButterKnife;
 import static com.maxot.mytest.utils.AppConstant.DB_COLLECTION_USER_NAME;
 
 public class SearchActivity extends BaseActivity
-        implements SearchMvpView, UserAdapter.OnUserSelectedListener{
+        implements SearchMvpView,
+        UserAdapter.OnUserSelectedListener{
 
     @Inject
     SearchPresenter<SearchMvpView> mPresenter;
@@ -192,7 +195,15 @@ public class SearchActivity extends BaseActivity
     }
 
     @Override
-    public void onUserSelected(DocumentSnapshot restaurant) {
+    public void onUserSelected(DocumentSnapshot user) {
+        // Go to the details page for the selected restaurant
+        Intent intent = new Intent(this, ProfileActivity.class);
+        intent.putExtra(ProfileActivity.USER_ID, user.getId());
+
+        startActivity(intent);
+      //  overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+
+
 
     }
 }

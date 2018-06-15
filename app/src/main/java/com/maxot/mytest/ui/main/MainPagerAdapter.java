@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.maxot.mytest.ui.main.results.ResultsFragment;
+import com.maxot.mytest.ui.main.tasks.TasksFragment;
 import com.maxot.mytest.ui.main.tests.TestsFragment;
 
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
@@ -23,7 +24,7 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return TestsFragment.newInstance();
             case 1:
-                return ResultsFragment.newInstance();
+                return TasksFragment.newInstance();
             default:
                 return null;
         }

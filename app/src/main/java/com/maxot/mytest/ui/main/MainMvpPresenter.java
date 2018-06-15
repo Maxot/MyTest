@@ -2,6 +2,7 @@ package com.maxot.mytest.ui.main;
 
 import android.net.Uri;
 
+import com.maxot.mytest.data.db.model.User;
 import com.maxot.mytest.di.PerActivity;
 import com.maxot.mytest.ui.basic.MvpPresenter;
 
@@ -18,9 +19,13 @@ public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V>
 
     void onDrawerOptionLogoutClick();
 
-    String getEmail();
+//    String getEmail();
+//
+//    String getName();
+//
+//    Uri getProfilImage();
 
-    String getName();
+    User getCurrentUser();
 
-    Uri getProfilImage();
+    String getCurrentUseID();
 }

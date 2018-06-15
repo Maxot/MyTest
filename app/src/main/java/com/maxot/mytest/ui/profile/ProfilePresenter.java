@@ -2,6 +2,7 @@ package com.maxot.mytest.ui.profile;
 
 import android.net.Uri;
 
+import com.google.firebase.firestore.DocumentReference;
 import com.maxot.mytest.data.DataManager;
 import com.maxot.mytest.data.db.model.AboutUser;
 import com.maxot.mytest.data.db.model.Result;
@@ -77,29 +78,39 @@ public class ProfilePresenter<V extends  ProfileMvpView> extends BasePresenter<V
 
     }
 
+//    @Override
+//    public void getContact() {
+//        getMvpView().updateContacts(super.getDataManager().getCurrentUser());
+//    }
+//
+//    @Override
+//    public String getEmail(){
+//        return super.getDataManager().getEmail();
+//    }
+//
+//    @Override
+//    public String getName() {
+//        return super.getDataManager().getName();
+//    }
+
+//    @Override
+//    public Uri getProfileImage() {
+//        return super.getDataManager().getProfileImg();
+//    }
+
     @Override
-    public void getContact() {
-        getMvpView().updateContacts(super.getDataManager().getUser());
+    public User getUser(String email){
+        return getDataManager().getUser(email);
     }
 
     @Override
-    public String getEmail(){
-        return super.getDataManager().getEmail();
+    public DocumentReference getUserRef(String email) {
+        return getDataManager().getUserRef(email);
     }
 
     @Override
-    public String getName() {
-        return super.getDataManager().getName();
-    }
-
-    @Override
-    public Uri getProfileImage() {
-        return super.getDataManager().getProfileImg();
-    }
-
-    @Override
-    public User getUser() {
-        return super.getDataManager().getUser();
+    public User getCurrentUser() {
+        return getDataManager().getCurrentUser();
     }
 
 }

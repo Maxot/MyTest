@@ -3,6 +3,7 @@ package com.maxot.mytest.ui.main;
 import android.net.Uri;
 
 import com.maxot.mytest.data.DataManager;
+import com.maxot.mytest.data.db.model.User;
 import com.maxot.mytest.ui.basic.BasePresenter;
 import com.maxot.mytest.ui.basic.MvpPresenter;
 import com.maxot.mytest.utils.rx.SchedulerProvider;
@@ -48,18 +49,28 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
 
     }
 
+//    @Override
+//    public String getEmail(){
+//        return super.getDataManager().getEmail();
+//    }
+//
+//    @Override
+//    public String getName() {
+//        return super.getDataManager().getName();
+//    }
+//
+//    @Override
+//    public Uri getProfilImage() {
+//        return super.getDataManager().getProfileImg();
+//    }
+
     @Override
-    public String getEmail(){
-        return super.getDataManager().getEmail();
+    public User getCurrentUser() {
+        return getDataManager().getCurrentUser();
     }
 
     @Override
-    public String getName() {
-        return super.getDataManager().getName();
-    }
-
-    @Override
-    public Uri getProfilImage() {
-        return super.getDataManager().getProfileImg();
+    public String getCurrentUseID() {
+        return getDataManager().getCurrentUserId();
     }
 }

@@ -6,11 +6,11 @@ import com.maxot.mytest.data.db.model.User;
 
 public interface FirebaseHelper {
 
-    String getEmail();
+//    String getEmail();
+//
+//    String getName();
+//
+//    Uri getProfileImg();
 
-    String getName();
-
-    Uri getProfileImg();
-
-    User getUser();
+    User getCurrentUser();
 }

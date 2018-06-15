@@ -3,9 +3,11 @@ package com.maxot.mytest.data;
 import android.content.Context;
 import android.net.Uri;
 
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.Query;
 import com.maxot.mytest.data.db.DbHelper;
 import com.maxot.mytest.data.db.model.AboutUser;
+import com.maxot.mytest.data.db.model.CustomTask;
 import com.maxot.mytest.data.db.model.Question;
 import com.maxot.mytest.data.db.model.Result;
 import com.maxot.mytest.data.db.model.Review;
@@ -45,13 +47,38 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public boolean checkIfUserExist() {
-        return mDbHelper.checkIfUserExist();
+    public void addNewTaskToDb(CustomTask task) {
+        mDbHelper.addNewTaskToDb(task);
     }
+
+//    @Override
+//    public boolean checkIfUserExist() {
+//        return mDbHelper.checkIfUserExist();
+//    }
 
     @Override
     public Query searchUser() {
         return mDbHelper.searchUser();
+    }
+
+    @Override
+    public Query getTasks() {
+        return mDbHelper.getTasks();
+    }
+
+    @Override
+    public User getUser(String email) {
+        return mDbHelper.getUser(email);
+    }
+
+    @Override
+    public String getCurrentUserId() {
+        return mDbHelper.getCurrentUserId();
+    }
+
+    @Override
+    public DocumentReference getUserRef(String email) {
+        return mDbHelper.getUserRef(email);
     }
 
     @Override
@@ -79,23 +106,23 @@ public class AppDataManager implements DataManager {
         return mDbHelper.getReviews();
     }
 
-    @Override
-    public String getEmail() {
-        return mFirebaseHelper.getEmail();
-    }
+//    @Override
+//    public String getEmail() {
+//        return mFirebaseHelper.getEmail();
+//    }
+//
+//    @Override
+//    public String getName() {
+//        return mFirebaseHelper.getName();
+//    }
+//
+//    @Override
+//    public Uri getProfileImg() {
+//        return mFirebaseHelper.getProfileImg();
+//    }
 
     @Override
-    public String getName() {
-        return mFirebaseHelper.getName();
-    }
-
-    @Override
-    public Uri getProfileImg() {
-        return mFirebaseHelper.getProfileImg();
-    }
-
-    @Override
-    public User getUser() {
-        return mFirebaseHelper.getUser();
+    public User getCurrentUser() {
+        return mFirebaseHelper.getCurrentUser();
     }
 }
